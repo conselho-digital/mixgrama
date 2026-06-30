@@ -98,12 +98,13 @@
     .nav-links a:hover, .nav-links a.active { background: rgba(60,120,30,.12); }
     .nav-cta {
       background: var(--green-btn); color: #fff;
-      padding: .45rem 1rem; border-radius: 999px;
-      font-size: .78rem; font-weight: 700; text-decoration: none;
-      white-space: nowrap; transition: background .2s;
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; text-decoration: none;
+      transition: background .2s, transform .2s;
       flex-shrink: 0;
     }
-    .nav-cta:hover { background: var(--green-btn-h); }
+    .nav-cta:hover { background: var(--green-btn-h); transform: scale(1.1); }
     .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
     .nav-burger span { display: block; width: 20px; height: 2px; background: #2d5018; border-radius: 2px; margin: 4px 0; }
 
@@ -346,17 +347,14 @@
     /* WA float */
     .wa-float {
       position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      width: 52px; height: 52px; border-radius: 50%;
       background: #25d366; color: #fff;
-      display: flex; align-items: center; gap: .5rem;
-      padding: .7rem 1.1rem .7rem .9rem;
-      border-radius: 999px;
-      font-size: .88rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
       box-shadow: 0 4px 20px rgba(37,211,102,.5);
       text-decoration: none; transition: transform .2s, box-shadow .2s;
-      white-space: nowrap;
     }
-    .wa-float i { font-size: 1.3rem; }
-    .wa-float:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(37,211,102,.6); }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.6); }
 
     @media (max-width: 600px) {
       .nav { flex-wrap: wrap; border-radius: 18px; padding: .55rem .85rem; }
@@ -382,7 +380,7 @@
 
 <!-- WA Float -->
 <a href="https://wa.me/5519997735924" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <i class="fab fa-whatsapp"></i> (19) 99773-5924
+  <i class="fab fa-whatsapp"></i>
 </a>
 
 <div class="page">
@@ -404,7 +402,7 @@
       <li><a href="#contato">Contato</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="https://wa.me/5519997735924" target="_blank" rel="noopener" class="nav-cta"><i class="fab fa-whatsapp"></i> (19) 99773-5924</a>
+    <a href="https://wa.me/5519997735924" target="_blank" rel="noopener" class="nav-cta"><i class="fab fa-whatsapp"></i></a>
     <button class="nav-burger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
