@@ -358,15 +358,17 @@
 
     @media (max-width: 600px) {
       .nav { flex-wrap: wrap; border-radius: 18px; padding: .55rem .85rem; }
-      .nav-burger { display: block; }
+      .nav-brand  { order: 1; }
+      .nav-cta    { order: 2; margin-left: auto; }
+      .nav-burger { order: 3; display: block; margin-left: .5rem; }
       .nav-links {
+        order: 4;
         display: none;
         width: 100%; flex-direction: column; gap: 0;
         padding: .5rem 0 .25rem;
       }
       .nav-links.open { display: flex; }
       .nav-links a { padding: .6rem .75rem; border-radius: var(--radius-xs,8px); font-size: .85rem; }
-      .nav-cta { order: 3; }
       .form-row { grid-template-columns: 1fr; }
       .portfolio-grid { grid-template-columns: 1fr; }
     }
