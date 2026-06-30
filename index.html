@@ -79,11 +79,10 @@
       text-decoration: none; flex-shrink: 0;
     }
     .nav-brand-icon {
-      width: 32px; height: 32px; border-radius: 8px;
-      background: var(--green-btn);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .95rem;
+      width: 38px; height: 38px; border-radius: 50%;
+      overflow: hidden; flex-shrink: 0;
     }
+    .nav-brand-icon img { width: 100%; height: 100%; object-fit: cover; }
     .nav-brand-text { line-height: 1.1; }
     .nav-brand-text .name { font-weight: 800; font-size: .88rem; color: #1f3a10; }
     .nav-brand-text .sub  { font-size: .62rem; color: #5a7a45; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
@@ -389,7 +388,7 @@
   <!-- ── NAV ── -->
   <nav class="nav">
     <a href="#inicio" class="nav-brand">
-      <div class="nav-brand-icon">🌿</div>
+      <div class="nav-brand-icon"><img src="img/logo.jpg" alt="Mixgrama"></div>
       <div class="nav-brand-text">
         <div class="name">Mixgrama</div>
         <div class="sub">Hydroseeding</div>
