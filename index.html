@@ -3,471 +3,1079 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mixgrama — Conectando ideias ao mundo</title>
+  <title>Hidrossemeadura e Plantio de Grama | Mixgrama</title>
+  <meta name="description" content="Empresa especializada em hidrossemeadura, plantio e venda de grama. Atendemos obras civis, taludes, mineração e agronegócio. Solicite orçamento!">
+  <meta name="robots" content="index, follow">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --brand:    #6C3FF5;
-      --brand-dk: #4A22D4;
-      --accent:   #FF6B6B;
-      --dark:     #0F0F1A;
-      --mid:      #1C1C2E;
-      --light:    #F5F5FF;
-      --muted:    #9494B0;
-      --radius:   12px;
+      --green-900: #0a3d1f;
+      --green-800: #145a2e;
+      --green-700: #1e7a40;
+      --green-600: #27a352;
+      --green-500: #34c566;
+      --green-400: #5dd98a;
+      --green-100: #e6f9ed;
+      --green-50:  #f3fdf6;
+      --white:     #ffffff;
+      --gray-50:   #f9fafb;
+      --gray-100:  #f3f4f6;
+      --gray-200:  #e5e7eb;
+      --gray-400:  #9ca3af;
+      --gray-600:  #4b5563;
+      --gray-800:  #1f2937;
+      --radius-sm: 8px;
+      --radius:    16px;
+      --radius-lg: 24px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+      --shadow:    0 4px 16px rgba(0,0,0,.1);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,.12);
     }
 
     html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--gray-800); line-height: 1.6; overflow-x: hidden; }
 
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: var(--dark);
-      color: var(--light);
-      line-height: 1.6;
+    /* ── UTILS ── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--green-100); color: var(--green-700);
+      padding: .35rem 1rem; border-radius: 999px;
+      font-size: .78rem; font-weight: 700; letter-spacing: .8px;
+      text-transform: uppercase; margin-bottom: 1rem;
     }
+    .section-label::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--green-600); }
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--gray-800); line-height: 1.2; margin-bottom: .75rem;
+    }
+    .section-sub { color: var(--gray-600); font-size: 1rem; max-width: 560px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 2rem; border-radius: 999px;
+      font-weight: 700; font-size: .95rem;
+      text-decoration: none; transition: all .2s; cursor: pointer; border: none;
+    }
+    .btn-green {
+      background: var(--green-700); color: var(--white);
+      box-shadow: 0 4px 20px rgba(30,122,64,.3);
+    }
+    .btn-green:hover { background: var(--green-800); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(30,122,64,.4); }
+    .btn-outline-green {
+      background: transparent; color: var(--green-700);
+      border: 2px solid var(--green-700);
+    }
+    .btn-outline-green:hover { background: var(--green-700); color: var(--white); }
+    .btn-white {
+      background: var(--white); color: var(--green-800);
+      box-shadow: var(--shadow);
+    }
+    .btn-white:hover { background: var(--green-50); transform: translateY(-2px); }
 
     /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: box-shadow .3s;
+    }
+    .nav.scrolled { box-shadow: var(--shadow); }
+    .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2rem;
-      background: rgba(15,15,26,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(108,63,245,0.15);
+      height: 68px; max-width: 1160px; margin: 0 auto; padding: 0 1.5rem;
     }
-    .logo {
-      font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px;
-      background: linear-gradient(135deg, var(--brand), var(--accent));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    .nav-logo {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color .2s; }
-    .nav-links a:hover { color: var(--light); }
-    .nav-cta {
-      background: var(--brand); color: #fff;
+    .nav-logo-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--green-700);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .nav-logo-text { font-weight: 800; font-size: 1.15rem; color: var(--gray-800); }
+    .nav-logo-text span { color: var(--green-700); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--gray-600); font-size: .9rem; font-weight: 500;
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--green-700); }
+    .nav-cta-btn {
+      background: var(--green-700); color: #fff;
       padding: .5rem 1.25rem; border-radius: 999px;
-      text-decoration: none; font-size: 0.9rem; font-weight: 600;
-      transition: background .2s;
+      font-size: .88rem; font-weight: 700;
+      text-decoration: none; transition: background .2s;
     }
-    .nav-cta:hover { background: var(--brand-dk); }
+    .nav-cta-btn:hover { background: var(--green-800); }
+    .nav-burger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-burger span { display: block; width: 24px; height: 2px; background: var(--gray-800); border-radius: 2px; }
 
     /* ── HERO ── */
-    #hero {
+    .hero {
       min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center;
-      padding: 6rem 1.5rem 4rem;
       background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(108,63,245,0.35) 0%, transparent 70%),
-        var(--dark);
+        linear-gradient(160deg, var(--green-50) 0%, var(--white) 55%, var(--green-100) 100%);
+      display: flex; align-items: center;
+      padding: 100px 1.5rem 60px;
       position: relative; overflow: hidden;
     }
-    #hero::after {
+    .hero::before {
       content: '';
-      position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236C3FF5' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      position: absolute; right: -120px; top: -80px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(52,197,102,.12) 0%, transparent 70%);
       pointer-events: none;
     }
-    .hero-inner { position: relative; max-width: 720px; }
-    .badge {
-      display: inline-block;
-      background: rgba(108,63,245,0.2); color: var(--brand);
-      border: 1px solid rgba(108,63,245,0.4);
-      padding: .35rem 1rem; border-radius: 999px;
-      font-size: .8rem; font-weight: 600; letter-spacing: .5px;
-      margin-bottom: 1.5rem;
+    .hero::after {
+      content: '';
+      position: absolute; left: -80px; bottom: -100px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,122,64,.08) 0%, transparent 70%);
+      pointer-events: none;
     }
-    h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 900; line-height: 1.1; margin-bottom: 1.25rem;
-      background: linear-gradient(135deg, #fff 30%, var(--brand));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    .hero-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      position: relative; z-index: 1;
     }
-    .hero-sub {
-      font-size: 1.15rem; color: var(--muted); max-width: 540px; margin: 0 auto 2.5rem;
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--white); border: 1px solid var(--green-200, #b7eeca);
+      color: var(--green-700); padding: .4rem 1rem;
+      border-radius: 999px; font-size: .8rem; font-weight: 600;
+      margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);
     }
-    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--brand); color: #fff;
-      padding: .85rem 2rem; border-radius: 999px;
-      text-decoration: none; font-weight: 700; font-size: 1rem;
-      transition: transform .2s, background .2s;
-      box-shadow: 0 0 32px rgba(108,63,245,0.4);
+    .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-500); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      line-height: 1.1; color: var(--gray-800);
+      margin-bottom: 1.25rem;
     }
-    .btn-primary:hover { background: var(--brand-dk); transform: translateY(-2px); }
-    .btn-outline {
-      border: 1px solid rgba(255,255,255,0.2); color: var(--light);
-      padding: .85rem 2rem; border-radius: 999px;
-      text-decoration: none; font-weight: 600; font-size: 1rem;
-      transition: border-color .2s, transform .2s;
+    .hero h1 em { font-style: normal; color: var(--green-700); }
+    .hero-desc { color: var(--gray-600); font-size: 1.05rem; margin-bottom: 2rem; max-width: 460px; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .hero-stats {
+      display: flex; gap: 2rem; flex-wrap: wrap;
+      padding-top: 1.5rem; border-top: 1px solid var(--gray-200);
     }
-    .btn-outline:hover { border-color: var(--brand); transform: translateY(-2px); }
+    .hero-stat-item { }
+    .hero-stat-num { font-size: 1.6rem; font-weight: 800; color: var(--green-700); }
+    .hero-stat-lbl { font-size: .78rem; color: var(--gray-400); font-weight: 500; }
+    .hero-visual {
+      position: relative;
+    }
+    .hero-img-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--green-100) 0%, var(--green-400) 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-img-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-img-placeholder {
+      font-size: 5rem; opacity: .3;
+    }
+    .hero-float-card {
+      position: absolute; bottom: -16px; left: -24px;
+      background: var(--white); border-radius: var(--radius);
+      padding: 1rem 1.25rem; box-shadow: var(--shadow-lg);
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .hero-float-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--green-100);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .hero-float-text { font-size: .8rem; }
+    .hero-float-text strong { display: block; font-size: 1rem; color: var(--green-700); font-weight: 800; }
 
-    /* ── STATS ── */
-    #stats {
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 2px;
-      background: rgba(108,63,245,0.08);
-      border-top: 1px solid rgba(108,63,245,0.12);
-      border-bottom: 1px solid rgba(108,63,245,0.12);
+    /* ── STRIP ── */
+    .strip {
+      background: var(--green-800);
+      padding: 1.5rem;
+      overflow: hidden;
     }
-    .stat {
-      flex: 1 1 160px; max-width: 220px;
-      text-align: center; padding: 2.5rem 1rem;
+    .strip-track {
+      display: flex; gap: 4rem; align-items: center;
+      animation: scroll-strip 30s linear infinite;
+      white-space: nowrap;
     }
-    .stat-num { font-size: 2.4rem; font-weight: 900; color: var(--brand); }
-    .stat-label { color: var(--muted); font-size: .85rem; margin-top: .25rem; }
+    @keyframes scroll-strip { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .strip-item {
+      display: flex; align-items: center; gap: .6rem;
+      color: rgba(255,255,255,.8); font-size: .88rem; font-weight: 500;
+      flex-shrink: 0;
+    }
+    .strip-item i { color: var(--green-400); }
 
-    /* ── SECTION SHARED ── */
-    section { padding: 6rem 1.5rem; }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-tag {
-      display: inline-block; color: var(--brand);
-      font-size: .8rem; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; margin-bottom: .75rem;
+    /* ── TÉCNICA ── */
+    .tecnica { padding: 6rem 0; background: var(--white); }
+    .tecnica-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+      margin-top: 3.5rem;
     }
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 800; line-height: 1.2; margin-bottom: 1rem;
+    .tecnica-features { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
+    .tecnica-feat {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.25rem; border-radius: var(--radius);
+      border: 1px solid var(--gray-200);
+      transition: border-color .2s, box-shadow .2s;
     }
-    .section-sub { color: var(--muted); max-width: 560px; }
+    .tecnica-feat:hover { border-color: var(--green-400); box-shadow: var(--shadow-sm); }
+    .feat-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: var(--green-100);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .feat-body h4 { font-size: .95rem; font-weight: 700; margin-bottom: .2rem; }
+    .feat-body p { font-size: .85rem; color: var(--gray-600); }
+    .ba-stack { display: flex; flex-direction: column; gap: 1rem; }
+    .ba-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .ba-photo {
+      border-radius: var(--radius); overflow: hidden; position: relative;
+      aspect-ratio: 4/3;
+      background: var(--green-100);
+      box-shadow: var(--shadow);
+    }
+    .ba-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .ba-tag {
+      position: absolute; top: .6rem; left: .6rem;
+      padding: .2rem .7rem; border-radius: 999px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .5px;
+    }
+    .ba-tag.antes { background: #fff3cd; color: #856404; }
+    .ba-tag.depois { background: var(--green-100); color: var(--green-800); }
 
-    /* ── FEATURES ── */
-    #features { background: var(--mid); }
-    .features-grid {
+    /* ── INSUMOS ── */
+    .insumos { padding: 5rem 0; background: var(--gray-50); }
+    .insumos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem; margin-top: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem; margin-top: 2.5rem;
     }
-    .card {
-      background: var(--dark); border: 1px solid rgba(108,63,245,0.15);
-      border-radius: var(--radius); padding: 2rem;
-      transition: border-color .3s, transform .3s;
+    .insumo-card {
+      background: var(--white); border-radius: var(--radius);
+      border: 1px solid var(--gray-200);
+      padding: 1.5rem 1.25rem; text-align: center;
+      transition: all .2s;
     }
-    .card:hover { border-color: var(--brand); transform: translateY(-4px); }
-    .card-icon {
-      width: 48px; height: 48px; border-radius: 10px;
-      background: rgba(108,63,245,0.15);
+    .insumo-card:hover { border-color: var(--green-500); transform: translateY(-4px); box-shadow: var(--shadow); }
+    .insumo-img {
+      width: 72px; height: 72px; border-radius: 12px;
+      background: var(--green-100);
+      margin: 0 auto .75rem;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; margin-bottom: 1.25rem;
+      font-size: 2rem;
     }
-    .card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
-    .card p { color: var(--muted); font-size: .9rem; }
+    .insumo-img img { width: 100%; height: 100%; object-fit: contain; border-radius: 12px; }
+    .insumo-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: .3rem; }
+    .insumo-card p { font-size: .8rem; color: var(--gray-600); line-height: 1.5; }
 
-    /* ── HOW IT WORKS ── */
-    .steps { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; }
-    .step { display: flex; gap: 1.5rem; align-items: flex-start; }
+    /* ── PROCESSO ── */
+    .processo { padding: 6rem 0; background: var(--white); }
+    .processo-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem; margin-top: 3rem; position: relative;
+    }
+    .processo-step {
+      background: var(--white); border-radius: var(--radius);
+      border: 1px solid var(--gray-200); overflow: hidden;
+      transition: all .2s;
+    }
+    .processo-step:hover { border-color: var(--green-400); box-shadow: var(--shadow); }
+    .step-img {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--green-100), var(--green-200, #b7eeca));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; overflow: hidden;
+    }
+    .step-img img { width: 100%; height: 100%; object-fit: cover; }
+    .step-body { padding: 1.25rem; }
     .step-num {
-      flex-shrink: 0; width: 44px; height: 44px;
-      border-radius: 50%; background: var(--brand);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 1rem;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--green-700); color: #fff;
+      font-size: .75rem; font-weight: 800; margin-bottom: .75rem;
     }
-    .step-body h3 { font-size: 1.1rem; margin-bottom: .3rem; }
-    .step-body p { color: var(--muted); font-size: .9rem; }
+    .step-body h3 { font-size: .95rem; font-weight: 700; margin-bottom: .4rem; }
+    .step-body p { font-size: .83rem; color: var(--gray-600); }
 
-    /* ── PRICING ── */
-    #pricing { background: var(--mid); }
-    .pricing-grid {
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: linear-gradient(135deg, var(--green-800) 0%, var(--green-600) 100%);
+      padding: 5rem 1.5rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-band::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='1' fill='white' fill-opacity='0.05'/%3E%3C/svg%3E");
+    }
+    .cta-band-inner { position: relative; max-width: 640px; margin: 0 auto; }
+    .cta-band h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem); color: #fff; margin-bottom: .75rem;
+    }
+    .cta-band p { color: rgba(255,255,255,.8); margin-bottom: 2rem; font-size: 1.05rem; }
+
+    /* ── PORTFÓLIO ── */
+    .portfolio { padding: 6rem 0; background: var(--gray-50); }
+    .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem; margin-top: 3rem;
+      gap: 1.25rem; margin-top: 2.5rem;
     }
-    .plan {
-      background: var(--dark); border: 1px solid rgba(108,63,245,0.15);
-      border-radius: var(--radius); padding: 2rem;
-      display: flex; flex-direction: column;
+    .portfolio-card {
+      background: var(--white); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      transition: all .25s;
     }
-    .plan.featured {
-      border-color: var(--brand);
-      box-shadow: 0 0 40px rgba(108,63,245,0.2);
+    .portfolio-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .portfolio-img {
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, var(--green-100), var(--green-300, #78dba0));
+      display: flex; align-items: center; justify-content: center; font-size: 3.5rem;
+      overflow: hidden;
     }
-    .plan-badge {
-      display: inline-block; background: var(--brand);
-      color: #fff; padding: .2rem .75rem;
-      border-radius: 999px; font-size: .75rem; font-weight: 700;
-      margin-bottom: 1rem; align-self: flex-start;
+    .portfolio-img img { width: 100%; height: 100%; object-fit: cover; }
+    .portfolio-info { padding: 1.25rem; }
+    .portfolio-tags { display: flex; gap: .4rem; margin-bottom: .75rem; }
+    .ptag {
+      background: var(--green-100); color: var(--green-700);
+      padding: .15rem .6rem; border-radius: 999px;
+      font-size: .72rem; font-weight: 600;
     }
-    .plan-name { font-size: 1.1rem; font-weight: 700; }
-    .plan-price {
-      font-size: 2.5rem; font-weight: 900; margin: .75rem 0 .25rem;
-    }
-    .plan-price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
-    .plan-desc { color: var(--muted); font-size: .85rem; margin-bottom: 1.5rem; }
-    .plan-features { list-style: none; margin-bottom: 2rem; flex: 1; }
-    .plan-features li {
-      padding: .4rem 0; font-size: .9rem; color: var(--muted);
-      display: flex; gap: .6rem; align-items: center;
-    }
-    .plan-features li::before { content: '✓'; color: var(--brand); font-weight: 700; }
-    .plan-btn {
-      display: block; text-align: center;
-      padding: .75rem; border-radius: 999px;
-      text-decoration: none; font-weight: 700; font-size: .9rem;
-      transition: background .2s, transform .2s;
-    }
-    .plan.featured .plan-btn { background: var(--brand); color: #fff; }
-    .plan.featured .plan-btn:hover { background: var(--brand-dk); transform: translateY(-1px); }
-    .plan:not(.featured) .plan-btn {
-      border: 1px solid rgba(255,255,255,0.2); color: var(--light);
-    }
-    .plan:not(.featured) .plan-btn:hover { border-color: var(--brand); }
+    .portfolio-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: .35rem; }
+    .portfolio-info p { font-size: .83rem; color: var(--gray-600); }
 
-    /* ── TESTIMONIALS ── */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem; margin-top: 3rem;
+    /* ── SOBRE ── */
+    .sobre { padding: 6rem 0; background: var(--white); }
+    .sobre-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+      margin-top: 3rem;
     }
-    .testimonial {
-      background: var(--mid); border: 1px solid rgba(108,63,245,0.12);
-      border-radius: var(--radius); padding: 1.75rem;
+    .sobre-text p { color: var(--gray-600); margin-bottom: 1rem; line-height: 1.8; }
+    .sobre-text p strong { color: var(--gray-800); }
+    .setores { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+    .setor {
+      display: flex; align-items: center; gap: .4rem;
+      background: var(--green-100); color: var(--green-800);
+      padding: .4rem .9rem; border-radius: 999px;
+      font-size: .83rem; font-weight: 600;
     }
-    .testimonial p { color: var(--muted); font-size: .9rem; margin-bottom: 1.25rem; line-height: 1.7; }
-    .testimonial-author { display: flex; align-items: center; gap: .75rem; }
-    .avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--brand), var(--accent));
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: .9rem;
+    .stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
     }
-    .author-name { font-weight: 700; font-size: .9rem; }
-    .author-role { color: var(--muted); font-size: .8rem; }
-
-    /* ── CTA ── */
-    #cta {
+    .stat-card {
+      background: var(--green-50); border: 1px solid var(--green-100);
+      border-radius: var(--radius); padding: 1.5rem;
       text-align: center;
-      background:
-        radial-gradient(ellipse 80% 80% at 50% 100%, rgba(108,63,245,0.3) 0%, transparent 70%),
-        var(--dark);
     }
-    #cta h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 1rem; }
-    #cta p { color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem; }
+    .stat-card-num {
+      font-size: 2rem; font-weight: 900; color: var(--green-700); display: block;
+    }
+    .stat-card-lbl { font-size: .8rem; color: var(--gray-600); }
+
+    /* ── FAQ ── */
+    .faq { padding: 6rem 0; background: var(--gray-50); }
+    .faq-list { max-width: 760px; margin: 2.5rem auto 0; }
+    .faq-item {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm); margin-bottom: .75rem; overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; text-align: left; display: flex; justify-content: space-between;
+      align-items: center; padding: 1.1rem 1.25rem; background: none; border: none;
+      cursor: pointer; font-size: .95rem; font-weight: 600; color: var(--gray-800);
+      gap: 1rem;
+    }
+    .faq-q .icon { transition: transform .3s; flex-shrink: 0; color: var(--green-600); }
+    .faq-item.open .faq-q .icon { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a-inner { padding: 0 1.25rem 1.25rem; color: var(--gray-600); font-size: .9rem; line-height: 1.8; }
+
+    /* ── CONTATO ── */
+    .contato { padding: 6rem 0; background: var(--white); }
+    .contato-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+      margin-top: 3rem;
+    }
+    .contato-info { display: flex; flex-direction: column; gap: 1rem; }
+    .contato-card {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.25rem; border-radius: var(--radius);
+      border: 1px solid var(--gray-200); background: var(--gray-50);
+    }
+    .contato-card-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--green-100); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: var(--green-700);
+    }
+    .contato-card h4 { font-size: .9rem; font-weight: 700; margin-bottom: .15rem; }
+    .contato-card p, .contato-card a { color: var(--gray-600); font-size: .88rem; text-decoration: none; }
+    .contato-card p.placeholder { color: var(--gray-400); font-style: italic; }
+    .contato-form {
+      background: var(--gray-50); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); padding: 2rem;
+    }
+    .contato-form h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: .83rem; font-weight: 600; color: var(--gray-700); margin-bottom: .35rem; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: .75rem 1rem;
+      border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
+      font-size: .9rem; font-family: inherit; background: var(--white);
+      color: var(--gray-800); transition: border-color .2s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: var(--green-600);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--mid);
-      border-top: 1px solid rgba(108,63,245,0.12);
-      padding: 2.5rem 1.5rem;
-      text-align: center; color: var(--muted); font-size: .85rem;
+    .footer {
+      background: var(--green-900);
+      padding: 3rem 1.5rem 1.5rem;
     }
-    footer a { color: var(--brand); text-decoration: none; }
+    .footer-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .footer-brand { }
+    .footer-logo {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; margin-bottom: 1rem;
+    }
+    .footer-logo-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--green-700);
+      display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    }
+    .footer-logo-name { font-weight: 800; font-size: 1.1rem; color: #fff; }
+    .footer-desc { color: rgba(255,255,255,.5); font-size: .85rem; max-width: 280px; line-height: 1.7; }
+    .footer-col h4 { color: rgba(255,255,255,.7); font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .5rem; }
+    .footer-col ul li a { color: rgba(255,255,255,.5); text-decoration: none; font-size: .85rem; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--green-400); }
+    .footer-bottom {
+      max-width: 1160px; margin: 1.5rem auto 0;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { color: rgba(255,255,255,.3); font-size: .8rem; }
+    .footer-bottom a { color: rgba(255,255,255,.4); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--green-400); }
 
-    @media (max-width: 640px) {
+    /* ── WA FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25d366; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; box-shadow: 0 4px 20px rgba(37,211,102,.5);
+      text-decoration: none; transition: transform .2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero-inner, .tecnica-grid, .sobre-grid, .contato-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
       .nav-links { display: none; }
-      .step { flex-direction: column; }
+      .nav-burger { display: flex; }
+    }
+    @media (max-width: 540px) {
+      .footer-inner { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <span class="logo">Mixgrama</span>
-  <ul class="nav-links">
-    <li><a href="#features">Recursos</a></li>
-    <li><a href="#how">Como funciona</a></li>
-    <li><a href="#pricing">Planos</a></li>
-    <li><a href="#testimonials">Depoimentos</a></li>
-  </ul>
-  <a href="#cta" class="nav-cta">Começar grátis</a>
+<!-- WA FLOAT (número a preencher) -->
+<a href="https://wa.me/" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ──── NAV ──── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#inicio" class="nav-logo">
+      <div class="nav-logo-icon">🌿</div>
+      <span class="nav-logo-text">Mix<span>grama</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#tecnica">Técnica</a></li>
+      <li><a href="#processo">Processo</a></li>
+      <li><a href="#portfolio">Portfólio</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#contato" class="nav-cta-btn">Solicitar Orçamento</a>
+    <button class="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
+<!-- ──── HERO ──── -->
+<section class="hero" id="inicio">
   <div class="hero-inner">
-    <span class="badge">✦ Novidade: integração com IA</span>
-    <h1>Conecte ideias.<br>Amplifique resultados.</h1>
-    <p class="hero-sub">
-      Mixgrama é a plataforma completa para equipes criativas que querem
-      produzir, organizar e compartilhar conteúdo de alto impacto.
-    </p>
-    <div class="btn-group">
-      <a href="#cta" class="btn-primary">Começar gratuitamente →</a>
-      <a href="#how" class="btn-outline">Ver como funciona</a>
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Especialistas em hidrossemeadura
+      </div>
+      <h1>Convertendo <em>Desafios Ambientais</em> em Valor Sustentável</h1>
+      <p class="hero-desc">
+        Hidrossemeadura, plantio e venda de grama para obras civis, taludes,
+        mineração e agronegócio. Cobertura vegetal rápida, uniforme e duradoura.
+      </p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn btn-green">Solicitar Orçamento <i class="fas fa-arrow-right"></i></a>
+        <a href="#tecnica" class="btn btn-outline-green">Conhecer a técnica</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat-item">
+          <div class="hero-stat-num">5–7</div>
+          <div class="hero-stat-lbl">dias p/ primeiros brotos</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-num">30</div>
+          <div class="hero-stat-lbl">dias para cobertura total</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-lbl">conformidade ambiental</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-card">
+        <div class="hero-img-placeholder">🌱</div>
+      </div>
+      <div class="hero-float-card">
+        <div class="hero-float-icon">⚡</div>
+        <div class="hero-float-text">
+          <strong>Aplicação em horas</strong>
+          Brotos em até 7 dias
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<div id="stats">
-  <div class="stat"><div class="stat-num">12k+</div><div class="stat-label">Usuários ativos</div></div>
-  <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Satisfação dos clientes</div></div>
-  <div class="stat"><div class="stat-num">3×</div><div class="stat-label">Mais produtividade</div></div>
-  <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Suporte dedicado</div></div>
+<!-- ──── STRIP ──── -->
+<div class="strip">
+  <div class="strip-track">
+    <span class="strip-item"><i class="fas fa-check-circle"></i> Revegetação de taludes</span>
+    <span class="strip-item"><i class="fas fa-check-circle"></i> Controle de erosão</span>
+    <span class="strip-item"><i class="fas fa-check-circle"></i> Obras civis</span>
+    <span class="strip-item"><i class="fas fa-check-circle"></i> Mineração</span>
+    <span class="strip-item"><i class="fas fa-check-circle"></i> Agronegócio</span>
+    <span class="strip-item"><i class="fas fa-check-circle"></i> Revegetação urbana</span>
+    <span class="strip-item"><i class="fas fa-check-circle"></i> Plantio de grama em placas</span>
+    <span class="strip-item"><i class="fas fa-check-circle"></i> ESG &amp; Conformidade</span>
+    <!-- duplicata para loop -->
+    <span class="strip-item" aria-hidden="true"><i class="fas fa-check-circle"></i> Revegetação de taludes</span>
+    <span class="strip-item" aria-hidden="true"><i class="fas fa-check-circle"></i> Controle de erosão</span>
+    <span class="strip-item" aria-hidden="true"><i class="fas fa-check-circle"></i> Obras civis</span>
+    <span class="strip-item" aria-hidden="true"><i class="fas fa-check-circle"></i> Mineração</span>
+    <span class="strip-item" aria-hidden="true"><i class="fas fa-check-circle"></i> Agronegócio</span>
+    <span class="strip-item" aria-hidden="true"><i class="fas fa-check-circle"></i> Revegetação urbana</span>
+    <span class="strip-item" aria-hidden="true"><i class="fas fa-check-circle"></i> Plantio de grama em placas</span>
+    <span class="strip-item" aria-hidden="true"><i class="fas fa-check-circle"></i> ESG &amp; Conformidade</span>
+  </div>
 </div>
 
-<!-- FEATURES -->
-<section id="features">
-  <div class="section-inner">
-    <span class="section-tag">Recursos</span>
-    <h2 class="section-title">Tudo que você precisa<br>em um só lugar</h2>
-    <p class="section-sub">Ferramentas poderosas para criar, colaborar e crescer — sem complicação.</p>
-    <div class="features-grid">
-      <div class="card">
-        <div class="card-icon">⚡</div>
-        <h3>Criação rápida</h3>
-        <p>Templates prontos e editor intuitivo para produzir conteúdo em minutos.</p>
+<!-- ──── TÉCNICA ──── -->
+<section class="tecnica" id="tecnica">
+  <div class="container">
+    <span class="section-label">A Técnica</span>
+    <h2 class="section-title">Hidrossemeadura:<br>A Técnica Mais Usada nos EUA</h2>
+    <p class="section-sub">
+      Um método de plantio hidráulico que surgiu nos EUA na década de 1940 e hoje
+      movimenta bilhões de dólares anuais com soluções ecológicas de alta eficiência.
+    </p>
+
+    <div class="tecnica-grid">
+      <div>
+        <p style="color:var(--gray-600);line-height:1.8;margin-bottom:1.25rem;">
+          A hidrossemeadura consiste na pulverização de uma mistura fluida composta por
+          <strong>sementes, água, adubo e cobertura protetora</strong> diretamente sobre o solo.
+          Muito eficiente para formação rápida de gramados, contenção de encostas e
+          restauração de solos danificados.
+        </p>
+        <p style="color:var(--gray-600);line-height:1.8;">
+          O setor evoluiu com maquinários modernos de alta tecnologia, tornando-se uma
+          das principais soluções ecológicas — ideal para obras que precisam de
+          cobertura vegetal rápida e duradoura.
+        </p>
+        <div class="tecnica-features">
+          <div class="tecnica-feat">
+            <div class="feat-icon">⚡</div>
+            <div class="feat-body">
+              <h4>Aplicação em horas</h4>
+              <p>Grandes áreas cobertas em uma única jornada de trabalho.</p>
+            </div>
+          </div>
+          <div class="tecnica-feat">
+            <div class="feat-icon">🌱</div>
+            <div class="feat-body">
+              <h4>Brotos em 5–7 dias</h4>
+              <p>Germinação rápida visível na primeira semana após aplicação.</p>
+            </div>
+          </div>
+          <div class="tecnica-feat">
+            <div class="feat-icon">🛡️</div>
+            <div class="feat-body">
+              <h4>Controle de erosão imediato</h4>
+              <p>Proteção do solo antes mesmo da germinação pelo mulch de fibra.</p>
+            </div>
+          </div>
+          <div class="tecnica-feat">
+            <div class="feat-icon">💧</div>
+            <div class="feat-body">
+              <h4>Retenção de umidade</h4>
+              <p>Fibras orgânicas funcionam como esponja, mantendo o microclima ideal.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <div class="card-icon">🤝</div>
-        <h3>Colaboração em tempo real</h3>
-        <p>Trabalhe junto com sua equipe, comente e aprove conteúdos sem sair da plataforma.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">📊</div>
-        <h3>Analytics avançado</h3>
-        <p>Métricas detalhadas para entender o desempenho e tomar decisões baseadas em dados.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🤖</div>
-        <h3>IA integrada</h3>
-        <p>Sugestões inteligentes, geração de texto e otimização automática de conteúdo.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🔗</div>
-        <h3>Integrações</h3>
-        <p>Conecte com suas ferramentas favoritas: Slack, Google, Notion, e muito mais.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🔒</div>
-        <h3>Segurança total</h3>
-        <p>Dados criptografados, controle de permissões e conformidade com a LGPD.</p>
+      <div class="ba-stack">
+        <div class="ba-row">
+          <div class="ba-photo">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#fde68a,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:3rem;">🏔️</div>
+            <span class="ba-tag antes">ANTES</span>
+          </div>
+          <div class="ba-photo">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,var(--green-100),var(--green-400));display:flex;align-items:center;justify-content:center;font-size:3rem;">🌿</div>
+            <span class="ba-tag depois">DEPOIS</span>
+          </div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-photo">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#d6b896,#a0785a);display:flex;align-items:center;justify-content:center;font-size:3rem;">🪨</div>
+            <span class="ba-tag antes">ANTES</span>
+          </div>
+          <div class="ba-photo">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#86efac,var(--green-500));display:flex;align-items:center;justify-content:center;font-size:3rem;">🌾</div>
+            <span class="ba-tag depois">DEPOIS</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="section-inner">
-    <span class="section-tag">Como funciona</span>
-    <h2 class="section-title">Do zero ao resultado<br>em 3 passos</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
+<!-- ──── INSUMOS ──── -->
+<section class="insumos" id="insumos">
+  <div class="container">
+    <span class="section-label">Insumos</span>
+    <h2 class="section-title">O que compõe a mistura</h2>
+    <p class="section-sub">Cada componente tem uma função específica para garantir cobertura uniforme e duradoura.</p>
+    <div class="insumos-grid">
+      <div class="insumo-card">
+        <div class="insumo-img">🧪</div>
+        <h3>Corretivo de Solo</h3>
+        <p>Equilibra o pH e condiciona o solo para a germinação rápida e uniforme.</p>
+      </div>
+      <div class="insumo-card">
+        <div class="insumo-img">🌾</div>
+        <h3>Sementes</h3>
+        <p>Variedades certificadas de grama líquida para cada tipo de solo e bioma.</p>
+      </div>
+      <div class="insumo-card">
+        <div class="insumo-img">🪵</div>
+        <h3>Mulch de Fibra</h3>
+        <p>Fibra de madeira + adubo orgânico que retém umidade e protege a biomembrana.</p>
+      </div>
+      <div class="insumo-card">
+        <div class="insumo-img">🔗</div>
+        <h3>Fixador</h3>
+        <p>Liga os componentes ao solo com resistência ao escoamento por chuvas e ventos.</p>
+      </div>
+      <div class="insumo-card">
+        <div class="insumo-img">🌿</div>
+        <h3>Adubo Orgânico</h3>
+        <p>Nutrição natural de liberação lenta que sustenta o crescimento por semanas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──── PROCESSO ──── -->
+<section class="processo" id="processo">
+  <div class="container">
+    <span class="section-label">Processo</span>
+    <h2 class="section-title">Como a hidrossemeadura<br>age no solo</h2>
+    <p class="section-sub">Do solo exposto ao tapete verde fechado — entenda cada etapa.</p>
+    <div class="processo-steps">
+      <div class="processo-step">
+        <div class="step-img">🌊</div>
         <div class="step-body">
-          <h3>Crie sua conta</h3>
-          <p>Cadastre-se em segundos, sem cartão de crédito. Seu primeiro projeto já está esperando por você.</p>
+          <div class="step-num">01</div>
+          <h3>Formação da Capa Protetora</h3>
+          <p>O líquido projetado evapora e os agentes colantes criam uma crosta porosa que protege as sementes contra erosão, chuvas e ventos.</p>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
+      <div class="processo-step">
+        <div class="step-img">💧</div>
         <div class="step-body">
-          <h3>Monte sua estratégia</h3>
-          <p>Use os templates ou crie do zero. Convide sua equipe e organize tudo num painel centralizado.</p>
+          <div class="step-num">02</div>
+          <h3>Retenção de Umidade</h3>
+          <p>Fibras orgânicas e aditivos absorvem e liberam gradualmente a água, criando o microclima ideal para despertar o embrião da semente.</p>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
+      <div class="processo-step">
+        <div class="step-img">🌱</div>
         <div class="step-body">
-          <h3>Publique e cresça</h3>
-          <p>Distribua seu conteúdo com um clique e acompanhe os resultados em tempo real.</p>
+          <div class="step-num">03</div>
+          <h3>Nutrição e Fixação Radicular</h3>
+          <p>Fertilizantes de liberação lenta fornecem nutrição contínua enquanto as raízes se fixam nas camadas do solo.</p>
+        </div>
+      </div>
+      <div class="processo-step">
+        <div class="step-img">🌿</div>
+        <div class="step-body">
+          <div class="step-num">04</div>
+          <h3>Tapete Fechado</h3>
+          <p>Em 30 dias a cobertura vegetal está consolidada. Solo protegido, raízes fixadas e tapete verde formado.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing">
-  <div class="section-inner">
-    <span class="section-tag">Planos</span>
-    <h2 class="section-title">Preço justo para<br>cada momento</h2>
-    <p class="section-sub">Comece grátis e escale conforme cresce. Cancele quando quiser.</p>
-    <div class="pricing-grid">
-      <div class="plan">
-        <div class="plan-name">Gratuito</div>
-        <div class="plan-price">R$ 0<span>/mês</span></div>
-        <div class="plan-desc">Para quem está começando.</div>
-        <ul class="plan-features">
-          <li>3 projetos ativos</li>
-          <li>1 usuário</li>
-          <li>Templates básicos</li>
-          <li>5 GB de armazenamento</li>
-        </ul>
-        <a href="#cta" class="plan-btn">Criar conta grátis</a>
-      </div>
-      <div class="plan featured">
-        <span class="plan-badge">Mais popular</span>
-        <div class="plan-name">Pro</div>
-        <div class="plan-price">R$ 79<span>/mês</span></div>
-        <div class="plan-desc">Para equipes que querem crescer rápido.</div>
-        <ul class="plan-features">
-          <li>Projetos ilimitados</li>
-          <li>Até 10 usuários</li>
-          <li>Todos os templates</li>
-          <li>50 GB de armazenamento</li>
-          <li>Analytics avançado</li>
-          <li>IA integrada</li>
-        </ul>
-        <a href="#cta" class="plan-btn">Começar agora</a>
-      </div>
-      <div class="plan">
-        <div class="plan-name">Enterprise</div>
-        <div class="plan-price">Custom<span></span></div>
-        <div class="plan-desc">Para grandes operações e necessidades específicas.</div>
-        <ul class="plan-features">
-          <li>Tudo do Pro</li>
-          <li>Usuários ilimitados</li>
-          <li>SSO / SAML</li>
-          <li>SLA dedicado</li>
-          <li>Onboarding personalizado</li>
-        </ul>
-        <a href="#cta" class="plan-btn">Falar com vendas</a>
-      </div>
-    </div>
+<!-- ──── CTA BAND ──── -->
+<div class="cta-band">
+  <div class="cta-band-inner">
+    <h2>Quer esse resultado na sua obra?</h2>
+    <p>Solicite um orçamento personalizado. Nossa equipe analisa a área, o tipo de solo e as espécies mais adequadas.</p>
+    <a href="#contato" class="btn btn-white">Solicitar Orçamento Grátis <i class="fas fa-arrow-right"></i></a>
   </div>
-</section>
+</div>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="section-inner">
-    <span class="section-tag">Depoimentos</span>
-    <h2 class="section-title">O que nossos clientes dizem</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial">
-        <p>"O Mixgrama transformou a forma como nossa equipe cria conteúdo. Economizamos horas toda semana."</p>
-        <div class="testimonial-author">
-          <div class="avatar">CM</div>
-          <div><div class="author-name">Carla Mendes</div><div class="author-role">Head de Marketing, StartX</div></div>
+<!-- ──── PORTFÓLIO ──── -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <span class="section-label">Aplicações</span>
+    <h2 class="section-title">Onde a Mixgrama atua</h2>
+    <p class="section-sub">Soluções para os mais variados segmentos e tipos de terreno.</p>
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <div class="portfolio-img">🏔️</div>
+        <div class="portfolio-info">
+          <div class="portfolio-tags">
+            <span class="ptag">Infraestrutura</span>
+            <span class="ptag">Estabilização</span>
+          </div>
+          <h3>Hidrossemeadura de Taludes</h3>
+          <p>Estabilização de encostas com cobertura vegetal permanente e controle de erosão superficial.</p>
         </div>
       </div>
-      <div class="testimonial">
-        <p>"A integração com IA é incrível. Finalmente conseguimos escalar nossa produção sem aumentar o time."</p>
-        <div class="testimonial-author">
-          <div class="avatar">RS</div>
-          <div><div class="author-name">Rafael Silva</div><div class="author-role">CEO, Agência Viva</div></div>
+      <div class="portfolio-card">
+        <div class="portfolio-img">🏭</div>
+        <div class="portfolio-info">
+          <div class="portfolio-tags">
+            <span class="ptag">Mineração</span>
+            <span class="ptag">ESG</span>
+          </div>
+          <h3>Restauração de Áreas Industriais</h3>
+          <p>Recuperação de passivos ambientais em complexos industriais e minerários com foco ESG.</p>
         </div>
       </div>
-      <div class="testimonial">
-        <p>"Interface simples, recursos poderosos. Nosso time adotou em menos de uma semana. Recomendo muito."</p>
-        <div class="testimonial-author">
-          <div class="avatar">JP</div>
-          <div><div class="author-name">Juliana Pereira</div><div class="author-role">Diretora de Conteúdo, MiMedia</div></div>
+      <div class="portfolio-card">
+        <div class="portfolio-img">🏙️</div>
+        <div class="portfolio-info">
+          <div class="portfolio-tags">
+            <span class="ptag">Urbano</span>
+            <span class="ptag">Paisagismo</span>
+          </div>
+          <h3>Revegetação de Zonas Urbanas</h3>
+          <p>Áreas verdes, paisagismo de rodovias e recuperação de margens de rios em ambiente urbano.</p>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <div class="portfolio-img">🌾</div>
+        <div class="portfolio-info">
+          <div class="portfolio-tags">
+            <span class="ptag">Agronegócio</span>
+            <span class="ptag">Conservação</span>
+          </div>
+          <h3>Controle de Erosão Rural</h3>
+          <p>Prevenção e recuperação de áreas erodidas em propriedades agrícolas e reservas legais.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section id="cta">
-  <div class="section-inner">
-    <h2>Pronto para começar?</h2>
-    <p>Junte-se a mais de 12.000 profissionais que já usam o Mixgrama.</p>
-    <a href="#" class="btn-primary">Criar conta gratuita →</a>
+<!-- ──── SOBRE ──── -->
+<section class="sobre" id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div>
+        <span class="section-label">Sobre Nós</span>
+        <h2 class="section-title">Convertendo desafios ambientais em valor sustentável</h2>
+        <div class="sobre-text">
+          <p>
+            A <strong>Mixgrama</strong> é especialista em hidrossemeadura — a técnica mais eficiente
+            para revegetação em larga escala. Através de uma mistura de sementes, fertilizantes,
+            mulch e água, aplicada sob pressão sobre o solo exposto, criamos uma biomembrana que
+            protege e regenera o ambiente.
+          </p>
+          <p>
+            Atendemos infraestrutura, mineração, agronegócio e engenharia civil com foco total em
+            ESG e conformidade ambiental. Nossos projetos cobrem taludes críticos, áreas industriais
+            degradadas, margens de rodovias e zonas urbanas.
+          </p>
+          <p>
+            Do primeiro broto ao tapete fechado, acompanhamos cada etapa do processo garantindo
+            resultados duradouros e certificados.
+          </p>
+        </div>
+        <div class="setores">
+          <span class="setor"><i class="fas fa-road"></i> Infraestrutura</span>
+          <span class="setor"><i class="fas fa-industry"></i> Mineração</span>
+          <span class="setor"><i class="fas fa-seedling"></i> Agronegócio</span>
+          <span class="setor"><i class="fas fa-hard-hat"></i> Engenharia</span>
+          <span class="setor"><i class="fas fa-leaf"></i> Jardinagem</span>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-card-num">5–7</span>
+          <span class="stat-card-lbl">dias para primeiros brotos</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-num">30</span>
+          <span class="stat-card-lbl">dias para cobertura total</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-num">100%</span>
+          <span class="stat-card-lbl">conformidade ambiental</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-num">ESG</span>
+          <span class="stat-card-lbl">foco em sustentabilidade</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 Mixgrama. Todos os direitos reservados. &nbsp;|&nbsp;
-     <a href="#">Privacidade</a> &nbsp;|&nbsp;
-     <a href="#">Termos</a> &nbsp;|&nbsp;
-     <a href="#">Contato</a>
-  </p>
+<!-- ──── FAQ ──── -->
+<section class="faq" id="faq">
+  <div class="container">
+    <span class="section-label">Perguntas Frequentes</span>
+    <h2 class="section-title" style="text-align:center;">Tire suas dúvidas</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q">O que é hidrossemeadura? <i class="fas fa-plus icon"></i></button>
+        <div class="faq-a"><div class="faq-a-inner">Hidrossemeadura é uma técnica de revegetação hidráulica que projeta sobre o solo uma mistura fluida de sementes, água, fertilizante, mulch de fibra e fixador. É ideal para taludes, áreas degradadas e controle de erosão, garantindo cobertura uniforme em terrenos de difícil acesso.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Quanto tempo leva para aparecerem os primeiros brotos? <i class="fas fa-plus icon"></i></button>
+        <div class="faq-a"><div class="faq-a-inner">Os primeiros brotos aparecem entre 5 e 7 dias após a aplicação. A cobertura completa do solo ocorre em torno de 30 dias, dependendo das condições climáticas, espécie de semente e irrigação.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">A hidrossemeadura funciona em taludes e encostas íngremes? <i class="fas fa-plus icon"></i></button>
+        <div class="faq-a"><div class="faq-a-inner">Sim. A hidrossemeadura em taludes é uma das aplicações mais comuns e eficientes da técnica. O fixador presente na mistura adere ao solo inclinado, criando uma camada protetora que previne erosão e deslizamentos enquanto a vegetação se desenvolve.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">A hidrossemeadura serve para controle de erosão? <i class="fas fa-plus icon"></i></button>
+        <div class="faq-a"><div class="faq-a-inner">Sim. A cobertura vegetal criada pela hidrossemeadura protege o solo da ação erosiva da chuva e do vento imediatamente após a aplicação, pois o mulch de fibra forma uma capa protetora antes mesmo da germinação das sementes.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Quais tipos de obras podem usar hidrossemeadura? <i class="fas fa-plus icon"></i></button>
+        <div class="faq-a"><div class="faq-a-inner">A hidrossemeadura é indicada para obras civis (rodovias, ferrovias, loteamentos), mineração, áreas industriais, agronegócio, revegetação urbana, jardins de grandes extensões e quaisquer terrenos que necessitem de cobertura vegetal rápida e eficiente.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">A Mixgrama também vende e instala grama em placas? <i class="fas fa-plus icon"></i></button>
+        <div class="faq-a"><div class="faq-a-inner">Sim! Além da hidrossemeadura, realizamos fornecimento e instalação de grama em placas (esmeralda, bermuda, batatais e outras espécies) para jardins residenciais, comerciais, campos esportivos e condomínios.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Como solicitar um orçamento? <i class="fas fa-plus icon"></i></button>
+        <div class="faq-a"><div class="faq-a-inner">Entre em contato pelo formulário abaixo ou pelo WhatsApp. Nossa equipe analisa a área, o tipo de solo e as espécies mais adequadas para apresentar uma proposta personalizada sem compromisso.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ──── CONTATO ──── -->
+<section class="contato" id="contato">
+  <div class="container">
+    <span class="section-label">Contato</span>
+    <h2 class="section-title">Entre em Contato</h2>
+    <p class="section-sub">Solicite seu orçamento personalizado. Resposta rápida em horário comercial.</p>
+
+    <div class="contato-grid">
+      <div class="contato-info">
+        <div class="contato-card">
+          <div class="contato-card-icon"><i class="fab fa-whatsapp"></i></div>
+          <div>
+            <h4>WhatsApp</h4>
+            <p class="placeholder">A preencher</p>
+          </div>
+        </div>
+        <div class="contato-card">
+          <div class="contato-card-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <h4>E-mail</h4>
+            <p class="placeholder">A preencher</p>
+          </div>
+        </div>
+        <div class="contato-card">
+          <div class="contato-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <h4>Localização</h4>
+            <p class="placeholder">A preencher</p>
+          </div>
+        </div>
+        <div class="contato-card">
+          <div class="contato-card-icon"><i class="fas fa-clock"></i></div>
+          <div>
+            <h4>Horário de Atendimento</h4>
+            <p class="placeholder">A preencher</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contato-form">
+        <h3>Solicitar Orçamento</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome *</label>
+            <input type="text" placeholder="Seu nome">
+          </div>
+          <div class="form-group">
+            <label>Telefone *</label>
+            <input type="tel" placeholder="(00) 00000-0000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Tipo de Serviço</label>
+          <select>
+            <option value="">Selecione...</option>
+            <option>Hidrossemeadura</option>
+            <option>Hidrossemeadura em Taludes</option>
+            <option>Controle de Erosão</option>
+            <option>Plantio de Grama em Placas</option>
+            <option>Venda de Grama</option>
+            <option>Revegetação Industrial</option>
+            <option>Revegetação Urbana</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensagem</label>
+          <textarea placeholder="Descreva o tamanho da área, tipo de solo e urgência..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-green" style="width:100%;justify-content:center;">
+          Enviar Solicitação <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──── FOOTER ──── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#inicio" class="footer-logo">
+        <div class="footer-logo-icon">🌿</div>
+        <span class="footer-logo-name">Mixgrama</span>
+      </a>
+      <p class="footer-desc">
+        Especialistas em hidrossemeadura e revegetação. Convertendo desafios ambientais
+        em valor sustentável em todo o interior de São Paulo.
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>Serviços</h4>
+      <ul>
+        <li><a href="#tecnica">Hidrossemeadura</a></li>
+        <li><a href="#portfolio">Revegetação de Taludes</a></li>
+        <li><a href="#portfolio">Controle de Erosão</a></li>
+        <li><a href="#portfolio">Restauração Industrial</a></li>
+        <li><a href="#portfolio">Revegetação Urbana</a></li>
+        <li><a href="#portfolio">Grama em Placas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#sobre">Sobre Nós</a></li>
+        <li><a href="#processo">Nosso Processo</a></li>
+        <li><a href="#faq">Perguntas Frequentes</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Mixgrama. Todos os direitos reservados.</p>
+    <p>Desenvolvido por <a href="https://conselhodigital.com" target="_blank" rel="noopener">Conselho Digital</a></p>
+  </div>
 </footer>
 
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
 </body>
 </html>
