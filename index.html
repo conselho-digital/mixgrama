@@ -220,17 +220,20 @@
     }
     .benefits-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: .75rem;
+      width: 100%; box-sizing: border-box;
     }
     .benefit-card {
       background: var(--glass-bg-lt);
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-sm);
-      padding: 1.25rem 1rem; text-align: center;
+      padding: 1rem .75rem; text-align: center;
       transition: background .2s;
+      min-width: 0; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center;
     }
     .benefit-card:hover { background: rgba(50,80,30,.6); }
     .benefit-card.wide { grid-column: span 2; }
-    .benefit-icon { font-size: 2.2rem; margin-bottom: .6rem; display: block; }
+    .benefit-icon { font-size: 2.2rem; margin-bottom: .6rem; display: block; margin-left: auto; margin-right: auto; }
     .benefit-card h4 {
       font-size: .72rem; font-weight: 800; text-transform: uppercase;
       letter-spacing: 1px; margin-bottom: .35rem;
@@ -589,27 +592,27 @@
       <p class="benefits-title">Principais Benefícios da Hidrossemeadura</p>
       <div class="benefits-grid">
         <div class="benefit-card wide">
-          <img src="img/vegetacaorapida.webp" class="benefit-icon" alt="Vegetação Rápida" style="width:3rem;height:3rem;object-fit:contain;border-radius:0;">
+          <img src="img/vegetacaorapida.webp" class="benefit-icon" alt="Vegetação Rápida" style="width:3rem;height:3rem;object-fit:contain;border-radius:0;display:block;margin:0 auto .6rem;">
           <h4>Vegetação Rápida</h4>
           <p>Crescimento das gramíneas visível em apenas 5 a 7 dias após a aplicação, com cobertura total em 30 dias.</p>
         </div>
         <div class="benefit-card">
-          <img src="img/Controle de Erosão.webp" class="benefit-icon" alt="Controle de Erosão" style="width:3rem;height:3rem;object-fit:contain;border-radius:0;">
+          <img src="img/Controle de Erosão.webp" class="benefit-icon" alt="Controle de Erosão" style="width:3rem;height:3rem;object-fit:contain;border-radius:0;display:block;margin:0 auto .6rem;">
           <h4>Controle de Erosão</h4>
           <p>Sistema radicular que mantém o solo estável e previne deslizamentos.</p>
         </div>
         <div class="benefit-card">
-          <img src="img/Econômico.webp" class="benefit-icon" alt="Econômico" style="width:3rem;height:3rem;object-fit:contain;border-radius:0;">
+          <img src="img/Econômico.webp" class="benefit-icon" alt="Econômico" style="width:3rem;height:3rem;object-fit:contain;border-radius:0;display:block;margin:0 auto .6rem;">
           <h4>Econômico</h4>
           <p>Custo-efetivo e eficiente para grandes áreas.</p>
         </div>
         <div class="benefit-card">
-          <img src="img/Crescimento Uniforme.webp" class="benefit-icon" alt="Crescimento Uniforme" style="width:3rem;height:3rem;object-fit:contain;border-radius:0;">
+          <img src="img/Crescimento Uniforme.webp" class="benefit-icon" alt="Crescimento Uniforme" style="width:3rem;height:3rem;object-fit:contain;border-radius:0;display:block;margin:0 auto .6rem;">
           <h4>Crescimento Uniforme</h4>
           <p>Cobertura densa e homogênea em toda a área.</p>
         </div>
         <div class="benefit-card">
-          <img src="img/Ecologicamente Correto.webp" class="benefit-icon" alt="Ecologicamente Correto" style="width:3rem;height:3rem;object-fit:contain;border-radius:0;">
+          <img src="img/Ecologicamente Correto.webp" class="benefit-icon" alt="Ecologicamente Correto" style="width:3rem;height:3rem;object-fit:contain;border-radius:0;display:block;margin:0 auto .6rem;">
           <h4>Ecologicamente Correto</h4>
           <p>Solução ambientalmente responsável e sustentável.</p>
         </div>
