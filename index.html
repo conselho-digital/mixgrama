@@ -124,9 +124,13 @@
     .hero {
       padding: 2.5rem 2rem;
       text-align: center;
-      background: url('img/banner.webp') center/contain no-repeat, rgba(20,38,12,0.7);
+      background: url('img/banner.webp') center/cover no-repeat;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     .hero h1 {
       font-size: clamp(1.6rem, 5vw, 2.2rem);
