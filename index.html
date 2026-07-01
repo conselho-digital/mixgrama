@@ -176,7 +176,8 @@
       max-width: 440px; margin: 0 auto 1.5rem;
     }
     .hero-btn {
-      display: inline-block;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; line-height: 1;
       background: transparent;
       border: 2px solid rgba(255,255,255,.6);
       color: var(--text-white);
@@ -218,6 +219,27 @@
       display: flex; align-items: center; gap: .25rem;
     }
     .service-divider { border: none; border-top: 1px solid var(--glass-border); margin: 0 1.25rem; }
+
+    @media (min-width: 601px) {
+      /* Service card images 2× bigger on desktop */
+      .service-img { width: clamp(104px, 20vw, 240px); height: clamp(104px, 20vw, 240px); }
+
+      /* Benefits section 2× bigger on desktop */
+      .benefits-section { padding: 2.5rem; }
+      .benefits-title { font-size: 1.4rem; letter-spacing: 3px; margin-bottom: 1.75rem; }
+      .benefits-grid { gap: 1.5rem; }
+      .benefit-card { padding: 2rem 1.5rem; }
+      .benefit-icon { font-size: 4.4rem !important; }
+      .benefit-card img.benefit-icon { width: 6rem !important; height: 6rem !important; }
+      .benefit-card h4 { font-size: 1.4rem; margin-bottom: .7rem; }
+      .benefit-card p { font-size: 1.5rem; }
+
+      /* A Técnica section 2× bigger on desktop */
+      .content-section h2 { font-size: 2.2rem; margin-bottom: 2rem; }
+      .content-section p { font-size: 1.76rem; margin-bottom: 1.7rem; }
+      .stat-num { font-size: 3.2rem; }
+      .stat-lbl { font-size: 1.4rem; }
+    }
 
     /* ── BENEFÍCIOS ── */
     .benefits-section { padding: 1.5rem; }
