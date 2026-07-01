@@ -232,15 +232,15 @@
       .service-info p  { font-size: clamp(.9rem, 2.2vw, 2.16rem); margin-bottom: 1rem; }
       .service-info .link { font-size: clamp(.95rem, 2.3vw, 2.34rem); }
 
-      /* Benefits section — large on desktop */
-      .benefits-section { padding: 3rem; }
-      .benefits-title { font-size: 2rem; letter-spacing: 3px; margin-bottom: 2rem; }
-      .benefits-grid { gap: 2rem; }
-      .benefit-card { padding: 2.5rem 2rem; }
-      .benefit-icon { font-size: 6rem !important; }
-      .benefit-img-icon { width: 10rem; height: 10rem; }
-      .benefit-card h4 { font-size: 2rem; margin-bottom: .9rem; }
-      .benefit-card p { font-size: 1.6rem; line-height: 1.6; }
+      /* Benefits section — fills cards on tablet+desktop */
+      .benefits-section { padding: clamp(2rem, 3vw, 3rem); }
+      .benefits-title { font-size: clamp(1.2rem, 2vw, 2rem) !important; letter-spacing: 3px; margin-bottom: clamp(1.25rem, 2vw, 2rem); }
+      .benefits-grid { gap: clamp(1rem, 1.5vw, 2rem); }
+      .benefit-card { padding: clamp(1.5rem, 2.5vw, 2.5rem) clamp(1rem, 2vw, 2rem); }
+      .benefit-icon { font-size: clamp(4rem, 7vw, 7rem) !important; }
+      .benefit-img-icon { width: clamp(6rem, 10vw, 12rem) !important; height: clamp(6rem, 10vw, 12rem) !important; }
+      .benefit-card h4 { font-size: clamp(1.2rem, 2vw, 2.2rem) !important; margin-bottom: clamp(.5rem, .8vw, 1rem) !important; }
+      .benefit-card p { font-size: clamp(1rem, 1.6vw, 1.8rem) !important; line-height: 1.6; }
 
       /* A Técnica section 3× on desktop */
       .content-section h2 { font-size: 3.3rem; margin-bottom: 2rem; }
