@@ -11,7 +11,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -40,6 +40,17 @@
       background: #1a3d0a;
       color: var(--text-white);
       overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    .nav-brand-text .name,
+    .hero-title,
+    .benefits-title,
+    .aplic-info h3,
+    .stat-num {
+      font-family: 'Montserrat', 'Inter', sans-serif;
     }
 
     /* ── BG LANDSCAPE ── */
@@ -86,8 +97,8 @@
     }
     .nav-brand-icon img { width: 100%; height: 100%; object-fit: cover; }
     .nav-brand-text { line-height: 1.1; }
-    .nav-brand-text .name { font-weight: 800; font-size: .88rem; color: #1f3a10; }
-    .nav-brand-text .sub  { font-size: .62rem; color: #5a7a45; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+    .nav-brand-text .name { font-weight: 900; font-size: .95rem; color: #1f3a10; letter-spacing: .3px; }
+    .nav-brand-text .sub  { font-size: .64rem; color: #5a7a45; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
     .nav-links {
       display: flex; gap: .1rem; list-style: none;
     }
@@ -269,9 +280,9 @@
     /* ── BENEFÍCIOS ── */
     .benefits-section { padding: 1.5rem; }
     .benefits-title {
-      text-align: center; font-size: .78rem; font-weight: 800;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: var(--text-muted); margin-bottom: 1rem;
+      text-align: center; font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
     }
     .benefits-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: .75rem;
@@ -291,22 +302,13 @@
     .benefit-icon { font-size: 2.2rem; margin-bottom: .6rem; display: block; margin-left: auto; margin-right: auto; }
     .benefit-img-icon { width: 3rem; height: 3rem; object-fit: contain; border-radius: 0; display: block; margin: 0 auto .6rem; }
     .benefit-card h4 {
-      font-size: .72rem; font-weight: 800; text-transform: uppercase;
+      font-weight: 800; text-transform: uppercase;
       letter-spacing: 1px; margin-bottom: .35rem;
     }
-    .benefit-card p { font-size: .75rem; color: var(--text-muted); line-height: 1.5; }
+    .benefit-card p { color: var(--text-muted); line-height: 1.5; }
 
     /* ── SOBRE / TÉCNICA / PROCESSO / FAQ / CONTATO ── */
     .content-section { padding: 1.75rem 1.5rem; }
-    .content-section h2 {
-      font-size: 1.1rem; font-weight: 800; text-transform: uppercase;
-      letter-spacing: 1px; margin-bottom: 1rem; color: var(--text-white);
-      display: flex; align-items: center; gap: .6rem;
-    }
-    .content-section h2::after {
-      content: ''; flex: 1; height: 1px; background: var(--glass-border);
-    }
-    .content-section p { font-size: .88rem; color: var(--text-muted); line-height: 1.8; margin-bottom: .85rem; }
     .content-section p strong { color: #fff; }
 
     /* process steps */
@@ -588,6 +590,64 @@
       text-decoration: none;
     }
     .aplic-info .link:hover { color: #fff; }
+
+    /* ── HERO TEXT OVERLAY ── */
+    .hero-overlay {
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to bottom,
+        rgba(5,18,3,.62) 0%,
+        rgba(5,18,3,.28) 45%,
+        transparent 68%);
+    }
+    .hero-text {
+      position: absolute;
+      top: 7%; left: 50%; transform: translateX(-50%);
+      text-align: center; z-index: 2;
+      width: 92%; max-width: 820px;
+      pointer-events: none;
+    }
+    .hero-title {
+      font-size: clamp(1.55rem, 4.2vw, 3.4rem);
+      font-weight: 900; line-height: 1.12;
+      color: #fff; letter-spacing: -.5px;
+      text-shadow: 0 2px 24px rgba(0,0,0,.55);
+      margin-bottom: .45rem;
+    }
+    .hero-sub {
+      font-size: clamp(.8rem, 1.7vw, 1.15rem);
+      color: rgba(255,255,255,.88);
+      text-shadow: 0 1px 10px rgba(0,0,0,.5);
+      line-height: 1.5; font-weight: 400;
+      max-width: 580px; margin: 0 auto;
+    }
+
+    /* ── SECTION HEADINGS — better scale ── */
+    .content-section h2 {
+      font-size: 1.25rem !important;
+      font-weight: 800; text-transform: uppercase;
+      letter-spacing: 1.5px; margin-bottom: 1.1rem; color: var(--text-white);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .content-section h2::after {
+      content: ''; flex: 1; height: 1px; background: var(--glass-border);
+    }
+    .content-section p {
+      font-size: .98rem !important; color: var(--text-muted);
+      line-height: 1.85; margin-bottom: 1rem;
+    }
+    .benefits-title {
+      font-size: 1rem !important; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; color: rgba(180,230,140,.9) !important;
+      margin-bottom: 1.25rem;
+    }
+    .benefit-card h4 { font-size: .9rem !important; font-weight: 800; letter-spacing: .8px; }
+    .benefit-card p  { font-size: .82rem !important; line-height: 1.65; }
+
+    @media (min-width: 901px) {
+      .content-section h2 { font-size: 1.55rem !important; }
+      .content-section p  { font-size: 1.05rem !important; }
+      .hero-text { top: 6%; }
+    }
   </style>
 </head>
 <body>
@@ -630,6 +690,11 @@
 
     <!-- ── HERO ── -->
     <div class="glass hero" id="inicio">
+      <div class="hero-overlay"></div>
+      <div class="hero-text">
+        <h1 class="hero-title">Transforme Qualquer Área<br>em Verde e Vida</h1>
+        <p class="hero-sub">Hidrossemeadura profissional para residências, taludes, estradas e grandes projetos — cobertura total em até 30 dias</p>
+      </div>
       <a href="https://wa.me/5519997735924" target="_blank" rel="noopener" class="hero-btn">Peça um Orçamento Grátis</a>
     </div>
 
