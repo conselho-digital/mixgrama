@@ -356,6 +356,48 @@
     }
     .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.6); }
 
+    /* ── LIGHTBOX ── */
+    .lightbox-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,.88); align-items: center; justify-content: center;
+    }
+    .lightbox-overlay.open { display: flex; animation: lb-in .25s ease; }
+    @keyframes lb-in { from { opacity:0; } to { opacity:1; } }
+    .lightbox-inner {
+      position: relative; max-width: 95vw; max-height: 90vh;
+      display: flex; flex-direction: column; align-items: center; gap: .75rem;
+      touch-action: pan-y;
+    }
+    .lightbox-inner img {
+      max-width: 95vw; max-height: 80vh; border-radius: 12px;
+      object-fit: contain;
+      animation: lb-slide .3s ease;
+    }
+    @keyframes lb-slide { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+    .lightbox-caption {
+      color: #fff; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; opacity: .75;
+    }
+    .lightbox-dots { display: flex; gap: .5rem; }
+    .lightbox-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.4); cursor: pointer; transition: background .2s;
+    }
+    .lightbox-dot.active { background: #fff; }
+    .lightbox-close {
+      position: absolute; top: -2.5rem; right: 0;
+      background: none; border: none; color: #fff; font-size: 1.6rem; cursor: pointer; line-height: 1;
+    }
+    .lightbox-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.15); border: none; color: #fff;
+      font-size: 1.4rem; padding: .4rem .7rem; border-radius: 8px; cursor: pointer;
+    }
+    .lightbox-arrow.prev { left: -3rem; }
+    .lightbox-arrow.next { right: -3rem; }
+    @media (max-width: 600px) {
+      .lightbox-arrow { display: none; }
+    }
+
     @media (max-width: 600px) {
       .nav { flex-wrap: nowrap; border-radius: 18px; padding: .55rem .85rem; }
       .nav-brand  { order: 1; }
@@ -433,18 +475,24 @@
 
     <!-- ── APLICAÇÕES ── -->
     <div class="glass" id="aplicacoes">
-      <a href="#projetos" class="service-card">
+      <div class="service-card" style="cursor:default;">
         <div class="service-imgs">
-          <div class="service-img">🏡</div>
-          <div class="service-img">🌿</div>
-          <div class="service-img">🏘️</div>
+          <div class="service-img gallery-thumb" data-gallery="residencial" data-index="0" style="cursor:pointer;">
+            <img src="img/residencial-antes.jpg" alt="Antes" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+          </div>
+          <div class="service-img gallery-thumb" data-gallery="residencial" data-index="1" style="cursor:pointer;">
+            <img src="img/residencial-durante.jpg" alt="Durante" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+          </div>
+          <div class="service-img gallery-thumb" data-gallery="residencial" data-index="2" style="cursor:pointer;">
+            <img src="img/residencial-depois.jpg" alt="Depois" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+          </div>
         </div>
         <div class="service-info">
           <h3>Hidrossemeadura Residencial</h3>
-          <p>Rápido Estabelecimento de Gramado</p>
-          <span class="link">Saiba Mais <i class="fas fa-chevron-right" style="font-size:.65rem"></i></span>
+          <p>Antes · Durante · Depois</p>
+          <a href="#projetos" class="link">Saiba Mais <i class="fas fa-chevron-right" style="font-size:.65rem"></i></a>
         </div>
-      </a>
+      </div>
       <hr class="service-divider">
       <a href="#projetos" class="service-card">
         <div class="service-imgs">
@@ -662,6 +710,73 @@
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
     });
+  });
+
+  // Lightbox gallery
+  const galleries = {
+    residencial: [
+      { src: 'img/residencial-antes.jpg',   label: 'Antes' },
+      { src: 'img/residencial-durante.jpg', label: 'Durante' },
+      { src: 'img/residencial-depois.jpg',  label: 'Depois' },
+    ]
+  };
+
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.innerHTML = `
+    <div class="lightbox-inner" id="lb-inner">
+      <button class="lightbox-close" id="lb-close">&#x2715;</button>
+      <button class="lightbox-arrow prev" id="lb-prev">&#8249;</button>
+      <img id="lb-img" src="" alt="">
+      <button class="lightbox-arrow next" id="lb-next">&#8250;</button>
+      <div class="lightbox-caption" id="lb-cap"></div>
+      <div class="lightbox-dots" id="lb-dots"></div>
+    </div>`;
+  document.body.appendChild(overlay);
+
+  let lbGallery = [], lbIdx = 0;
+
+  function lbShow(gallery, idx) {
+    lbGallery = galleries[gallery];
+    lbIdx = idx;
+    overlay.classList.add('open');
+    lbRender();
+  }
+  function lbRender() {
+    const img = document.getElementById('lb-img');
+    img.style.animation = 'none'; img.offsetHeight; img.style.animation = '';
+    img.src = lbGallery[lbIdx].src;
+    document.getElementById('lb-cap').textContent = lbGallery[lbIdx].label;
+    const dots = document.getElementById('lb-dots');
+    dots.innerHTML = lbGallery.map((_, i) =>
+      `<span class="lightbox-dot${i===lbIdx?' active':''}" data-i="${i}"></span>`).join('');
+    dots.querySelectorAll('.lightbox-dot').forEach(d =>
+      d.addEventListener('click', () => { lbIdx = +d.dataset.i; lbRender(); }));
+  }
+  function lbClose() { overlay.classList.remove('open'); }
+  function lbStep(dir) { lbIdx = (lbIdx + dir + lbGallery.length) % lbGallery.length; lbRender(); }
+
+  document.getElementById('lb-close').addEventListener('click', lbClose);
+  document.getElementById('lb-prev').addEventListener('click', () => lbStep(-1));
+  document.getElementById('lb-next').addEventListener('click', () => lbStep(1));
+  overlay.addEventListener('click', e => { if (e.target === overlay) lbClose(); });
+  document.addEventListener('keydown', e => {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') lbStep(-1);
+    if (e.key === 'ArrowRight') lbStep(1);
+    if (e.key === 'Escape') lbClose();
+  });
+
+  // Swipe support
+  let tsX = 0;
+  overlay.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; }, {passive:true});
+  overlay.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tsX;
+    if (Math.abs(dx) > 40) lbStep(dx < 0 ? 1 : -1);
+  });
+
+  document.querySelectorAll('.gallery-thumb').forEach(el => {
+    el.addEventListener('click', () => lbShow(el.dataset.gallery, +el.dataset.index));
   });
 
   // Nav active link on scroll
