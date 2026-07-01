@@ -162,15 +162,20 @@
     .service-card:hover { background: rgba(255,255,255,.06); border-radius: var(--radius); }
     .service-imgs { display: flex; gap: .4rem; flex-shrink: 0; }
     .service-img {
-      width: 62px; height: 62px; border-radius: var(--radius-xs);
+      width: 52px; height: 52px; border-radius: var(--radius-xs);
       object-fit: cover; overflow: hidden;
       background: rgba(255,255,255,.12);
       display: flex; align-items: center; justify-content: center;
       font-size: 1.6rem; flex-shrink: 0;
     }
-    .service-info { flex: 1; }
-    .service-info h3 { font-size: .95rem; font-weight: 700; margin-bottom: .1rem; }
-    .service-info p  { font-size: .78rem; color: var(--text-muted); margin-bottom: .35rem; }
+    @media (min-width: 601px) {
+      .service-img { width: 62px; height: 62px; }
+      .service-info h3 { font-size: .95rem; }
+      .service-info p  { font-size: .78rem; }
+    }
+    .service-info { flex: 1; min-width: 0; overflow: hidden; }
+    .service-info h3 { font-size: .82rem; font-weight: 700; margin-bottom: .1rem; word-break: break-word; }
+    .service-info p  { font-size: .72rem; color: var(--text-muted); margin-bottom: .35rem; }
     .service-info .link {
       font-size: .78rem; color: rgba(180,230,140,.9); font-weight: 600;
       display: flex; align-items: center; gap: .25rem;
