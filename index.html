@@ -538,6 +538,56 @@
       .portfolio-grid { grid-template-columns: 1fr; }
       .nav, .sections, .footer { max-width: 90vw; }
     }
+
+    /* ── APLICAÇÕES GRID ── */
+    .aplicacoes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .85rem;
+      padding: 1rem;
+    }
+    .aplic-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .aplic-carousel {
+      overflow: hidden;
+      width: 100%;
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+    .aplic-track {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      animation: aplic-scroll 9s linear infinite;
+    }
+    .aplic-track img {
+      width: calc(100% / 6);
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: opacity .2s;
+    }
+    .aplic-track img:hover { opacity: .85; }
+    @keyframes aplic-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .aplic-info {
+      padding: .7rem .9rem .85rem;
+    }
+    .aplic-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: .2rem; color: var(--text-white); }
+    .aplic-info p  { font-size: .8rem; color: var(--text-muted); margin-bottom: .4rem; line-height: 1.4; }
+    .aplic-info .link {
+      font-size: .8rem; color: rgba(180,230,140,.9); font-weight: 600;
+      display: inline-flex; align-items: center; gap: .25rem;
+      text-decoration: none;
+    }
+    .aplic-info .link:hover { color: #fff; }
   </style>
 </head>
 <body>
@@ -585,61 +635,84 @@
 
     <!-- ── APLICAÇÕES ── -->
     <div class="glass" id="aplicacoes">
-      <div class="service-card" style="cursor:default;">
-        <div class="service-imgs">
-          <div class="service-img gallery-thumb" data-gallery="residencial" data-index="0" style="cursor:pointer;">
-            <img src="img/residencial-antes.jpg" alt="Antes" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+      <div class="aplicacoes-grid">
+
+        <!-- Card 1: Hidrossemeadura Residencial -->
+        <div class="aplic-card">
+          <div class="aplic-carousel">
+            <div class="aplic-track">
+              <img src="img/residencial-antes.jpg" alt="Antes" data-gallery="residencial" data-index="0">
+              <img src="img/residencial-durante.jpg" alt="Durante" data-gallery="residencial" data-index="1">
+              <img src="img/residencial-depois.jpg" alt="Depois" data-gallery="residencial" data-index="2">
+              <img src="img/residencial-antes.jpg" alt="Antes" data-gallery="residencial" data-index="0">
+              <img src="img/residencial-durante.jpg" alt="Durante" data-gallery="residencial" data-index="1">
+              <img src="img/residencial-depois.jpg" alt="Depois" data-gallery="residencial" data-index="2">
+            </div>
           </div>
-          <div class="service-img gallery-thumb" data-gallery="residencial" data-index="1" style="cursor:pointer;">
-            <img src="img/residencial-durante.jpg" alt="Durante" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
-          </div>
-          <div class="service-img gallery-thumb" data-gallery="residencial" data-index="2" style="cursor:pointer;">
-            <img src="img/residencial-depois.jpg" alt="Depois" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
-          </div>
-        </div>
-        <div class="service-info">
-          <h3>Hidrossemeadura Residencial</h3>
-          <p>Antes · Durante · Depois</p>
-          <a href="#projetos" class="link">Saiba Mais <i class="fas fa-chevron-right" style="font-size:.65rem"></i></a>
-        </div>
-      </div>
-      <hr class="service-divider">
-      <div class="service-card" style="cursor:default;">
-        <div class="service-imgs">
-          <div class="service-img gallery-thumb" data-gallery="encostas" data-index="0" style="cursor:pointer;">
-            <img src="img/encostas-1.jpg" alt="Encosta 1" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
-          </div>
-          <div class="service-img gallery-thumb" data-gallery="encostas" data-index="1" style="cursor:pointer;">
-            <img src="img/encostas-2.jpg" alt="Encosta 2" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
-          </div>
-          <div class="service-img gallery-thumb" data-gallery="encostas" data-index="2" style="cursor:pointer;">
-            <img src="img/encostas-3.jpg" alt="Encosta 3" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+          <div class="aplic-info">
+            <h3>Hidrossemeadura Residencial</h3>
+            <p>Antes · Durante · Depois</p>
+            <a href="#projetos" class="link">Saiba Mais <i class="fas fa-chevron-right"></i></a>
           </div>
         </div>
-        <div class="service-info">
-          <h3>Estabilização de Encostas</h3>
-          <p>Controle de Erosão</p>
-          <a href="#projetos" class="link">Saiba Mais <i class="fas fa-chevron-right" style="font-size:.65rem"></i></a>
-        </div>
-      </div>
-      <hr class="service-divider">
-      <div class="service-card" style="cursor:default;">
-        <div class="service-imgs">
-          <div class="service-img gallery-thumb" data-gallery="comerciais" data-index="0" style="cursor:pointer;">
-            <img src="img/canteiros.webp" alt="Canteiros" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+
+        <!-- Card 2: Estabilização de Encostas -->
+        <div class="aplic-card">
+          <div class="aplic-carousel">
+            <div class="aplic-track">
+              <img src="img/encostas-1.jpg" alt="Encosta 1" data-gallery="encostas" data-index="0">
+              <img src="img/encostas-2.jpg" alt="Encosta 2" data-gallery="encostas" data-index="1">
+              <img src="img/encostas-3.jpg" alt="Encosta 3" data-gallery="encostas" data-index="2">
+              <img src="img/encostas-1.jpg" alt="Encosta 1" data-gallery="encostas" data-index="0">
+              <img src="img/encostas-2.jpg" alt="Encosta 2" data-gallery="encostas" data-index="1">
+              <img src="img/encostas-3.jpg" alt="Encosta 3" data-gallery="encostas" data-index="2">
+            </div>
           </div>
-          <div class="service-img gallery-thumb" data-gallery="comerciais" data-index="1" style="cursor:pointer;">
-            <img src="img/condominios.webp" alt="Condomínios" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
-          </div>
-          <div class="service-img gallery-thumb" data-gallery="comerciais" data-index="2" style="cursor:pointer;">
-            <img src="img/rodovias.webp" alt="Rodovias" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+          <div class="aplic-info">
+            <h3>Estabilização de Encostas</h3>
+            <p>Controle de erosão em taludes e encostas</p>
+            <a href="#projetos" class="link">Saiba Mais <i class="fas fa-chevron-right"></i></a>
           </div>
         </div>
-        <div class="service-info">
-          <h3>Projetos Comerciais</h3>
-          <p>Semeadura em grande escala</p>
-          <a href="#projetos" class="link">Saiba Mais <i class="fas fa-chevron-right" style="font-size:.65rem"></i></a>
+
+        <!-- Card 3: Projetos Comerciais -->
+        <div class="aplic-card">
+          <div class="aplic-carousel">
+            <div class="aplic-track">
+              <img src="img/canteiros.webp" alt="Canteiros" data-gallery="comerciais" data-index="0">
+              <img src="img/condominios.webp" alt="Condomínios" data-gallery="comerciais" data-index="1">
+              <img src="img/rodovias.webp" alt="Rodovias" data-gallery="comerciais" data-index="2">
+              <img src="img/canteiros.webp" alt="Canteiros" data-gallery="comerciais" data-index="0">
+              <img src="img/condominios.webp" alt="Condomínios" data-gallery="comerciais" data-index="1">
+              <img src="img/rodovias.webp" alt="Rodovias" data-gallery="comerciais" data-index="2">
+            </div>
+          </div>
+          <div class="aplic-info">
+            <h3>Projetos Comerciais</h3>
+            <p>Canteiros, condomínios e rodovias</p>
+            <a href="#projetos" class="link">Saiba Mais <i class="fas fa-chevron-right"></i></a>
+          </div>
         </div>
+
+        <!-- Card 4: Revegetação Urbana -->
+        <div class="aplic-card">
+          <div class="aplic-carousel">
+            <div class="aplic-track">
+              <img src="img/condominios.webp" alt="Condomínios" data-gallery="urbana" data-index="0">
+              <img src="img/canteiros.webp" alt="Canteiros" data-gallery="urbana" data-index="1">
+              <img src="img/vegetacaorapida.webp" alt="Vegetação Rápida" data-gallery="urbana" data-index="2">
+              <img src="img/condominios.webp" alt="Condomínios" data-gallery="urbana" data-index="0">
+              <img src="img/canteiros.webp" alt="Canteiros" data-gallery="urbana" data-index="1">
+              <img src="img/vegetacaorapida.webp" alt="Vegetação Rápida" data-gallery="urbana" data-index="2">
+            </div>
+          </div>
+          <div class="aplic-info">
+            <h3>Revegetação Urbana</h3>
+            <p>Áreas verdes, parques e praças</p>
+            <a href="#projetos" class="link">Saiba Mais <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -931,6 +1004,11 @@
       { src: 'img/canteiros.webp',   label: 'Canteiros' },
       { src: 'img/condominios.webp', label: 'Condomínios' },
       { src: 'img/rodovias.webp',    label: 'Rodovias' },
+    ],
+    urbana: [
+      { src: 'img/condominios.webp',     label: 'Condomínios' },
+      { src: 'img/canteiros.webp',       label: 'Canteiros' },
+      { src: 'img/vegetacaorapida.webp', label: 'Vegetação Rápida' },
     ]
   };
 
@@ -990,6 +1068,10 @@
 
   document.querySelectorAll('.gallery-thumb').forEach(el => {
     el.addEventListener('click', () => lbShow(el.dataset.gallery, +el.dataset.index));
+  });
+
+  document.querySelectorAll('.aplic-track img').forEach(img => {
+    img.addEventListener('click', () => lbShow(img.dataset.gallery, +img.dataset.index));
   });
 
   // Nav active link on scroll
