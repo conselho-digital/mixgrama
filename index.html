@@ -144,7 +144,15 @@
         aspect-ratio: 1024 / 572;
         padding: 0;
       }
-      .hero-logo { width: 200px; height: 200px; }
+      .hero-logo {
+        position: absolute;
+        top: 28%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 300px; height: 300px;
+        margin-bottom: 0;
+      }
+      .hero-btn { position: absolute; bottom: 12%; left: 50%; transform: translateX(-50%); }
     }
     .hero h1 {
       font-size: clamp(1.6rem, 5vw, 2.2rem);
