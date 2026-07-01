@@ -564,7 +564,7 @@
       display: flex;
       width: 600%;
       height: 100%;
-      animation: aplic-scroll 9s linear infinite;
+      animation: aplic-scroll 7.5s linear infinite;
     }
     .aplic-track img {
       width: calc(100% / 6);
@@ -576,8 +576,16 @@
     }
     .aplic-track img:hover { opacity: .85; }
     @keyframes aplic-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+      /* Image 1: hold 2s (0–26.67%), slide 0.5s (26.67–33.33%) */
+      0%       { transform: translateX(0);          animation-timing-function: linear; }
+      26.6667% { transform: translateX(0);          animation-timing-function: ease-in-out; }
+      33.3333% { transform: translateX(-16.6667%);  animation-timing-function: linear; }
+      /* Image 2: hold 2s (33.33–60%), slide 0.5s (60–66.67%) */
+      60%      { transform: translateX(-16.6667%);  animation-timing-function: ease-in-out; }
+      66.6667% { transform: translateX(-33.3333%);  animation-timing-function: linear; }
+      /* Image 3: hold 2s (66.67–93.33%), slide 0.5s (93.33–100%) */
+      93.3333% { transform: translateX(-33.3333%);  animation-timing-function: ease-in-out; }
+      100%     { transform: translateX(-50%); }
     }
     .aplic-info {
       padding: .7rem .9rem .85rem;
