@@ -221,11 +221,11 @@
     .service-divider { border: none; border-top: 1px solid var(--glass-border); margin: 0 1.25rem; }
 
     @media (min-width: 601px) {
-      /* Service card images 2× + text 3× on desktop */
+      /* Service card images 2× + text scales with viewport */
       .service-img { width: clamp(104px, 20vw, 240px); height: clamp(104px, 20vw, 240px); }
-      .service-info h3 { font-size: 2.46rem; margin-bottom: .3rem; }
-      .service-info p  { font-size: 2.16rem; margin-bottom: 1rem; }
-      .service-info .link { font-size: 2.34rem; }
+      .service-info h3 { font-size: clamp(1rem, 2.5vw, 2.46rem); margin-bottom: .3rem; }
+      .service-info p  { font-size: clamp(.9rem, 2.2vw, 2.16rem); margin-bottom: 1rem; }
+      .service-info .link { font-size: clamp(.95rem, 2.3vw, 2.34rem); }
 
       /* Benefits section — large on desktop */
       .benefits-section { padding: 3rem; }
