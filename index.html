@@ -292,11 +292,22 @@
     .submit-btn:hover { background: var(--green-btn-h); }
 
     /* ── INSUMOS ── */
-    .insumos-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr));
-      gap: .6rem; margin-top: .5rem;
+    .insumos-carousel {
+      overflow: hidden; margin-top: .5rem;
+      -webkit-mask: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    .insumos-track {
+      display: flex; gap: .75rem;
+      animation: insumos-scroll 18s linear infinite;
+      width: max-content;
+    }
+    @keyframes insumos-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
     .insumo-item {
+      flex-shrink: 0; width: 130px;
       background: rgba(255,255,255,.06); border: 1px solid var(--glass-border);
       border-radius: var(--radius-xs); padding: .85rem .6rem; text-align: center;
     }
@@ -574,31 +585,60 @@
     <!-- ── INSUMOS ── -->
     <div class="glass content-section">
       <h2>Insumos</h2>
-      <div class="insumos-grid">
-        <div class="insumo-item">
-          <img src="img/solotrat.webp" alt="Solotrat Corretivo de Solo" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
-          <h4>Corretivo de Solo</h4>
-          <p>Equilibra o pH para germinação rápida</p>
-        </div>
-        <div class="insumo-item">
-          <img src="img/sementes.png" alt="Sementes para Hidrossemeadura" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
-          <h4>Sementes</h4>
-          <p>Variedades certificadas para cada bioma</p>
-        </div>
-        <div class="insumo-item">
-          <img src="img/pura-fibra.webp" alt="Pura Fibra Mulch" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
-          <h4>Mulch de Fibra</h4>
-          <p>Retém umidade e protege a biomembrana</p>
-        </div>
-        <div class="insumo-item">
-          <img src="img/fixador.webp" alt="Fixador para Hidrossemeadura" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
-          <h4>Fixador</h4>
-          <p>Adere ao solo resistindo a chuvas e ventos</p>
-        </div>
-        <div class="insumo-item">
-          <img src="img/mulch-verdetec.webp" alt="Adubo Orgânico Verdetec" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
-          <h4>Adubo Orgânico</h4>
-          <p>Nutrição de liberação lenta por semanas</p>
+      <div class="insumos-carousel">
+        <div class="insumos-track">
+          <!-- set 1 -->
+          <div class="insumo-item">
+            <img src="img/solotrat.webp" alt="Solotrat" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
+            <h4>Corretivo de Solo</h4>
+            <p>Equilibra o pH para germinação rápida</p>
+          </div>
+          <div class="insumo-item">
+            <img src="img/sementes.png" alt="Sementes" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
+            <h4>Sementes</h4>
+            <p>Variedades certificadas para cada bioma</p>
+          </div>
+          <div class="insumo-item">
+            <img src="img/pura-fibra.webp" alt="Pura Fibra" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
+            <h4>Mulch de Fibra</h4>
+            <p>Retém umidade e protege a biomembrana</p>
+          </div>
+          <div class="insumo-item">
+            <img src="img/fixador.webp" alt="Fixador" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
+            <h4>Fixador</h4>
+            <p>Adere ao solo resistindo a chuvas e ventos</p>
+          </div>
+          <div class="insumo-item">
+            <img src="img/mulch-verdetec.webp" alt="Adubo Orgânico" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
+            <h4>Adubo Orgânico</h4>
+            <p>Nutrição de liberação lenta por semanas</p>
+          </div>
+          <!-- set 2 (duplicate for seamless loop) -->
+          <div class="insumo-item">
+            <img src="img/solotrat.webp" alt="Solotrat" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
+            <h4>Corretivo de Solo</h4>
+            <p>Equilibra o pH para germinação rápida</p>
+          </div>
+          <div class="insumo-item">
+            <img src="img/sementes.png" alt="Sementes" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
+            <h4>Sementes</h4>
+            <p>Variedades certificadas para cada bioma</p>
+          </div>
+          <div class="insumo-item">
+            <img src="img/pura-fibra.webp" alt="Pura Fibra" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
+            <h4>Mulch de Fibra</h4>
+            <p>Retém umidade e protege a biomembrana</p>
+          </div>
+          <div class="insumo-item">
+            <img src="img/fixador.webp" alt="Fixador" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
+            <h4>Fixador</h4>
+            <p>Adere ao solo resistindo a chuvas e ventos</p>
+          </div>
+          <div class="insumo-item">
+            <img src="img/mulch-verdetec.webp" alt="Adubo Orgânico" style="width:72px;height:72px;object-fit:contain;margin-bottom:.5rem;">
+            <h4>Adubo Orgânico</h4>
+            <p>Nutrição de liberação lenta por semanas</p>
+          </div>
         </div>
       </div>
     </div>
