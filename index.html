@@ -246,11 +246,24 @@
     }
 
     @media (min-width: 901px) {
-      /* A Técnica — normal readable sizes on desktop */
-      .content-section h2 { font-size: 1.6rem !important; margin-bottom: 1.25rem !important; }
-      .content-section p { font-size: 1.05rem !important; margin-bottom: 1rem !important; }
-      .stat-num { font-size: 2.4rem !important; }
-      .stat-lbl { font-size: .95rem !important; }
+      /* Per-section desktop text sizes — each section independent */
+      #tecnica h2  { font-size: 1.6rem; margin-bottom: 1.25rem; }
+      #tecnica p   { font-size: 1.05rem; margin-bottom: 1rem; }
+      #tecnica .stat-num { font-size: 2.4rem; }
+      #tecnica .stat-lbl { font-size: .95rem; }
+
+      #insumos h2  { font-size: 1.4rem; margin-bottom: 1rem; }
+
+      #faq h2      { font-size: 1.4rem; margin-bottom: 1rem; }
+      #faq p       { font-size: 1rem; }
+
+      #projetos h2 { font-size: 1.4rem; margin-bottom: 1rem; }
+      #projetos p  { font-size: 1rem; }
+
+      #sobre h2    { font-size: 1.4rem; margin-bottom: 1rem; }
+      #sobre p     { font-size: 1rem; }
+
+      #contato h2  { font-size: 1.4rem; margin-bottom: 1rem; }
     }
 
     /* ── BENEFÍCIOS ── */
@@ -675,7 +688,7 @@
     </div>
 
     <!-- ── INSUMOS ── -->
-    <div class="glass content-section">
+    <div class="glass content-section" id="insumos">
       <h2>Insumos</h2>
       <div class="insumos-carousel">
         <div class="insumos-track">
@@ -834,7 +847,7 @@
     </div>
 
     <!-- ── SOBRE ── -->
-    <div class="glass content-section">
+    <div class="glass content-section" id="sobre">
       <h2>Sobre Nós</h2>
       <p>A <strong>Mixgrama</strong> é especialista em hidrossemeadura — a técnica mais eficiente para revegetação em larga escala. Através de uma mistura de sementes, fertilizantes, mulch e água, aplicada sob pressão sobre o solo exposto, criamos uma biomembrana que protege e regenera o ambiente.</p>
       <p>Atendemos <strong>infraestrutura, mineração, agronegócio e engenharia civil</strong> com foco total em ESG e conformidade ambiental. Nossos projetos cobrem taludes críticos, áreas industriais degradadas, margens de rodovias e zonas urbanas.</p>
