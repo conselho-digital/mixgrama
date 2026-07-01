@@ -528,18 +528,24 @@
         </div>
       </div>
       <hr class="service-divider">
-      <a href="#projetos" class="service-card">
+      <div class="service-card" style="cursor:default;">
         <div class="service-imgs">
-          <div class="service-img">🏭</div>
-          <div class="service-img">🏗️</div>
-          <div class="service-img">🌾</div>
+          <div class="service-img gallery-thumb" data-gallery="comerciais" data-index="0" style="cursor:pointer;">
+            <img src="img/canteiros.webp" alt="Canteiros" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+          </div>
+          <div class="service-img gallery-thumb" data-gallery="comerciais" data-index="1" style="cursor:pointer;">
+            <img src="img/condominios.webp" alt="Condomínios" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+          </div>
+          <div class="service-img gallery-thumb" data-gallery="comerciais" data-index="2" style="cursor:pointer;">
+            <img src="img/rodovias.webp" alt="Rodovias" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+          </div>
         </div>
         <div class="service-info">
           <h3>Projetos Comerciais</h3>
           <p>Semeadura em grande escala</p>
-          <span class="link">Saiba Mais <i class="fas fa-chevron-right" style="font-size:.65rem"></i></span>
+          <a href="#projetos" class="link">Saiba Mais <i class="fas fa-chevron-right" style="font-size:.65rem"></i></a>
         </div>
-      </a>
+      </div>
     </div>
 
     <!-- ── BENEFÍCIOS ── -->
@@ -773,6 +779,11 @@
       { src: 'img/encostas-1.jpg', label: 'Foto 1' },
       { src: 'img/encostas-2.jpg', label: 'Foto 2' },
       { src: 'img/encostas-3.jpg', label: 'Foto 3' },
+    ],
+    comerciais: [
+      { src: 'img/canteiros.webp',   label: 'Canteiros' },
+      { src: 'img/condominios.webp', label: 'Condomínios' },
+      { src: 'img/rodovias.webp',    label: 'Rodovias' },
     ]
   };
 
