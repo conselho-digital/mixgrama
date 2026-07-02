@@ -77,8 +77,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --glass-bg:      rgba(20, 38, 12, 0.25);
-      --glass-bg-lt:   rgba(25, 45, 15, 0.25);
+      --glass-bg:      rgba(20, 38, 12, 0.08);
+      --glass-bg-lt:   rgba(25, 45, 15, 0.08);
       --glass-border:  rgba(255,255,255,0.25);
       --glass-blur:    blur(28px);
       --green-btn:     #3a7d2c;
@@ -348,7 +348,7 @@
       width: 100%; box-sizing: border-box;
     }
     .benefit-card {
-      background: var(--glass-bg-lt);
+      background: rgba(25, 45, 15, 0.55);
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-sm);
       padding: 1rem .75rem; text-align: center;
@@ -392,7 +392,7 @@
     }
     .portfolio-item {
       border-radius: var(--radius-xs); overflow: hidden;
-      background: rgba(255,255,255,.08);
+      background: rgba(20, 38, 12, 0.55);
       border: 1px solid var(--glass-border);
     }
     .portfolio-img-ph {
@@ -515,7 +515,7 @@
 
     /* FAQ */
     .faq-list { display: flex; flex-direction: column; gap: .5rem; margin-top: .5rem; }
-    .faq-item { background: rgba(255,255,255,.04); border-radius: var(--radius-xs); overflow: hidden; }
+    .faq-item { background: rgba(20, 38, 12, 0.55); border-radius: var(--radius-xs); overflow: hidden; }
     .faq-q {
       width: 100%; text-align: left; background: none; border: none; cursor: pointer;
       display: flex; justify-content: space-between; align-items: center;
@@ -575,7 +575,7 @@
     }
     .insumo-item {
       flex-shrink: 0; width: 130px;
-      background: rgba(255,255,255,.06); border: 1px solid var(--glass-border);
+      background: rgba(20, 38, 12, 0.55); border: 1px solid var(--glass-border);
       border-radius: var(--radius-xs); padding: .85rem .6rem; text-align: center;
     }
     .insumo-item .emoji { font-size: 1.6rem; display: block; margin-bottom: .4rem; }
@@ -729,7 +729,7 @@
       padding: 1rem;
     }
     .aplic-card {
-      background: rgba(255,255,255,.06);
+      background: rgba(20, 38, 12, 0.55);
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-sm);
       overflow: hidden;
