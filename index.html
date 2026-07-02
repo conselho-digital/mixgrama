@@ -360,7 +360,45 @@
     }
     .portfolio-track img:hover { opacity: .85; }
     .portfolio-track-5 img { width: calc(100% / 10); }
+    .portfolio-track-6 img { width: calc(100% / 12); }
+    .portfolio-track-8 img { width: calc(100% / 16); }
     .portfolio-track-9 img { width: calc(100% / 18); }
+    @keyframes port-scroll-6 {
+      /* 6 images × (2s hold + 0.5s slide) = 15s */
+      0%        { transform: translateX(0);          animation-timing-function: linear; }
+      13.3333%  { transform: translateX(0);          animation-timing-function: ease-in-out; }
+      16.6667%  { transform: translateX(-8.3333%);   animation-timing-function: linear; }
+      30%       { transform: translateX(-8.3333%);   animation-timing-function: ease-in-out; }
+      33.3333%  { transform: translateX(-16.6667%);  animation-timing-function: linear; }
+      46.6667%  { transform: translateX(-16.6667%);  animation-timing-function: ease-in-out; }
+      50%       { transform: translateX(-25%);       animation-timing-function: linear; }
+      63.3333%  { transform: translateX(-25%);       animation-timing-function: ease-in-out; }
+      66.6667%  { transform: translateX(-33.3333%);  animation-timing-function: linear; }
+      80%       { transform: translateX(-33.3333%);  animation-timing-function: ease-in-out; }
+      83.3333%  { transform: translateX(-41.6667%);  animation-timing-function: linear; }
+      96.6667%  { transform: translateX(-41.6667%);  animation-timing-function: ease-in-out; }
+      100%      { transform: translateX(-50%); }
+    }
+    @keyframes port-scroll-8 {
+      /* 8 images × (2s hold + 0.5s slide) = 20s */
+      0%      { transform: translateX(0);        animation-timing-function: linear; }
+      10%     { transform: translateX(0);        animation-timing-function: ease-in-out; }
+      12.5%   { transform: translateX(-6.25%);   animation-timing-function: linear; }
+      22.5%   { transform: translateX(-6.25%);   animation-timing-function: ease-in-out; }
+      25%     { transform: translateX(-12.5%);   animation-timing-function: linear; }
+      35%     { transform: translateX(-12.5%);   animation-timing-function: ease-in-out; }
+      37.5%   { transform: translateX(-18.75%);  animation-timing-function: linear; }
+      47.5%   { transform: translateX(-18.75%);  animation-timing-function: ease-in-out; }
+      50%     { transform: translateX(-25%);     animation-timing-function: linear; }
+      60%     { transform: translateX(-25%);     animation-timing-function: ease-in-out; }
+      62.5%   { transform: translateX(-31.25%);  animation-timing-function: linear; }
+      72.5%   { transform: translateX(-31.25%);  animation-timing-function: ease-in-out; }
+      75%     { transform: translateX(-37.5%);   animation-timing-function: linear; }
+      85%     { transform: translateX(-37.5%);   animation-timing-function: ease-in-out; }
+      87.5%   { transform: translateX(-43.75%);  animation-timing-function: linear; }
+      97.5%   { transform: translateX(-43.75%);  animation-timing-function: ease-in-out; }
+      100%    { transform: translateX(-50%); }
+    }
     @keyframes port-scroll-9 {
       /* 9 images × (2s hold + 0.5s slide) = 22.5s */
       0%       { transform: translateX(0);          animation-timing-function: linear; }
@@ -1019,7 +1057,7 @@
         <!-- Hidrossemeadura de Taludes — carousel -->
         <div class="portfolio-item">
           <div class="portfolio-carousel">
-            <div class="portfolio-track">
+            <div class="portfolio-track portfolio-track-8" style="width:800%;animation:port-scroll-8 20s linear infinite;">
               <img src="img/taludes-1.jpg" alt="Taludes 1" class="gallery-thumb" data-gallery="taludes" data-index="0">
               <img src="img/taludes-2.jpg" alt="Taludes 2" class="gallery-thumb" data-gallery="taludes" data-index="1">
               <img src="img/taludes-3.jpg" alt="Taludes 3" class="gallery-thumb" data-gallery="taludes" data-index="2">
@@ -1027,7 +1065,7 @@
               <img src="img/taludes-5.jpg" alt="Taludes 5" class="gallery-thumb" data-gallery="taludes" data-index="4">
               <img src="img/taludes-6.jpg" alt="Taludes 6" class="gallery-thumb" data-gallery="taludes" data-index="5">
               <img src="img/taludes-7.jpg" alt="Taludes 7" class="gallery-thumb" data-gallery="taludes" data-index="6">
-              <!-- duplicates for seamless loop -->
+              <img src="img/taludes-8.jpg" alt="Taludes 8" class="gallery-thumb" data-gallery="taludes" data-index="7">
               <img src="img/taludes-1.jpg" alt="Taludes 1" data-gallery="taludes" data-index="0">
               <img src="img/taludes-2.jpg" alt="Taludes 2" data-gallery="taludes" data-index="1">
               <img src="img/taludes-3.jpg" alt="Taludes 3" data-gallery="taludes" data-index="2">
@@ -1035,6 +1073,7 @@
               <img src="img/taludes-5.jpg" alt="Taludes 5" data-gallery="taludes" data-index="4">
               <img src="img/taludes-6.jpg" alt="Taludes 6" data-gallery="taludes" data-index="5">
               <img src="img/taludes-7.jpg" alt="Taludes 7" data-gallery="taludes" data-index="6">
+              <img src="img/taludes-8.jpg" alt="Taludes 8" data-gallery="taludes" data-index="7">
             </div>
           </div>
           <p>Hidrossemeadura de Taludes</p>
@@ -1042,17 +1081,19 @@
 
         <div class="portfolio-item">
           <div class="portfolio-carousel">
-            <div class="portfolio-track portfolio-track-5" style="width:500%;animation:port-scroll-5 12.5s linear infinite;">
+            <div class="portfolio-track portfolio-track-6" style="width:600%;animation:port-scroll-6 15s linear infinite;">
               <img src="img/pracas-1.jpg" alt="Praças 1" class="gallery-thumb" data-gallery="pracas" data-index="0">
               <img src="img/pracas-2.jpg" alt="Praças 2" class="gallery-thumb" data-gallery="pracas" data-index="1">
               <img src="img/pracas-3.jpg" alt="Praças 3" class="gallery-thumb" data-gallery="pracas" data-index="2">
               <img src="img/pracas-4.jpg" alt="Praças 4" class="gallery-thumb" data-gallery="pracas" data-index="3">
               <img src="img/pracas-5.jpg" alt="Praças 5" class="gallery-thumb" data-gallery="pracas" data-index="4">
+              <img src="img/pracas-6.jpg" alt="Praças 6" class="gallery-thumb" data-gallery="pracas" data-index="5">
               <img src="img/pracas-1.jpg" alt="Praças 1" data-gallery="pracas" data-index="0">
               <img src="img/pracas-2.jpg" alt="Praças 2" data-gallery="pracas" data-index="1">
               <img src="img/pracas-3.jpg" alt="Praças 3" data-gallery="pracas" data-index="2">
               <img src="img/pracas-4.jpg" alt="Praças 4" data-gallery="pracas" data-index="3">
               <img src="img/pracas-5.jpg" alt="Praças 5" data-gallery="pracas" data-index="4">
+              <img src="img/pracas-6.jpg" alt="Praças 6" data-gallery="pracas" data-index="5">
             </div>
           </div>
           <p>Praças Públicas</p>
@@ -1217,6 +1258,7 @@
       { src: 'img/pracas-3.jpg', label: '' },
       { src: 'img/pracas-4.jpg', label: '' },
       { src: 'img/pracas-5.jpg', label: '' },
+      { src: 'img/pracas-6.jpg', label: '' },
     ],
     taludes: [
       { src: 'img/taludes-1.jpg', label: '' },
@@ -1226,6 +1268,7 @@
       { src: 'img/taludes-5.jpg', label: '' },
       { src: 'img/taludes-6.jpg', label: '' },
       { src: 'img/taludes-7.jpg', label: '' },
+      { src: 'img/taludes-8.jpg', label: '' },
     ]
   };
 
