@@ -591,13 +591,25 @@
       display: flex; flex-direction: column; align-items: center; gap: .75rem;
       touch-action: pan-y;
     }
-    .lightbox-inner img {
-      max-width: 95vw; max-height: 80vh; border-radius: 12px;
-      object-fit: contain;
-      animation: lb-slide .3s ease;
-      cursor: grab; user-select: none; -webkit-user-drag: none;
+    .lb-viewport {
+      position: relative; overflow: hidden;
+      width: min(95vw, 1200px); max-height: 80vh;
+      border-radius: 12px;
+      cursor: grab; user-select: none;
     }
-    @keyframes lb-slide { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+    .lb-viewport:active { cursor: grabbing; }
+    .lb-strip {
+      display: flex; align-items: center;
+      will-change: transform;
+    }
+    .lb-strip img {
+      flex-shrink: 0; width: min(95vw, 1200px);
+      max-height: 80vh;
+      border-radius: 12px;
+      object-fit: contain;
+      -webkit-user-drag: none;
+      display: block;
+    }
     .lightbox-caption { display: none; }
     .lightbox-dots { display: flex; gap: .5rem; }
     .lightbox-dot {
@@ -1281,33 +1293,58 @@
     <div class="lightbox-inner" id="lb-inner">
       <button class="lightbox-close" id="lb-close">&#x2715;</button>
       <button class="lightbox-arrow prev" id="lb-prev">&#8249;</button>
-      <img id="lb-img" src="" alt="">
+      <div class="lb-viewport" id="lb-viewport">
+        <div class="lb-strip" id="lb-strip"></div>
+      </div>
       <button class="lightbox-arrow next" id="lb-next">&#8250;</button>
       <div class="lightbox-caption" id="lb-cap"></div>
       <div class="lightbox-dots" id="lb-dots"></div>
     </div>`;
   document.body.appendChild(overlay);
 
-  let lbGallery = [], lbIdx = 0;
+  let lbGallery = [], lbIdx = 0, lbAnimating = false;
 
   function lbShow(gallery, idx) {
     lbGallery = galleries[gallery];
     lbIdx = idx;
     overlay.classList.add('open');
-    lbRender();
+    lbBuild();
   }
-  function lbRender() {
-    const img = document.getElementById('lb-img');
-    img.style.animation = 'none'; img.offsetHeight; img.style.animation = '';
-    img.src = lbGallery[lbIdx].src;
+
+  function lbBuild() {
+    const strip = document.getElementById('lb-strip');
+    strip.style.transition = 'none';
+    strip.innerHTML = lbGallery.map(p => `<img src="${p.src}" alt="" draggable="false">`).join('');
+    strip.style.transform = `translateX(${-lbIdx * 100}%)`;
+    lbDots();
+  }
+
+  function lbGo(newIdx, animate) {
+    if (lbAnimating && animate) return;
+    lbIdx = (newIdx + lbGallery.length) % lbGallery.length;
+    const strip = document.getElementById('lb-strip');
+    if (animate) {
+      lbAnimating = true;
+      strip.style.transition = 'transform .4s ease-in-out';
+      strip.style.transform = `translateX(${-lbIdx * 100}%)`;
+      strip.addEventListener('transitionend', () => { lbAnimating = false; }, {once: true});
+    } else {
+      strip.style.transition = 'none';
+      strip.style.transform = `translateX(${-lbIdx * 100}%)`;
+    }
+    lbDots();
+  }
+
+  function lbDots() {
     const dots = document.getElementById('lb-dots');
     dots.innerHTML = lbGallery.map((_, i) =>
       `<span class="lightbox-dot${i===lbIdx?' active':''}" data-i="${i}"></span>`).join('');
     dots.querySelectorAll('.lightbox-dot').forEach(d =>
-      d.addEventListener('click', () => { lbIdx = +d.dataset.i; lbRender(); }));
+      d.addEventListener('click', () => lbGo(+d.dataset.i, true)));
   }
+
   function lbClose() { overlay.classList.remove('open'); }
-  function lbStep(dir) { lbIdx = (lbIdx + dir + lbGallery.length) % lbGallery.length; lbRender(); }
+  function lbStep(dir) { lbGo(lbIdx + dir, true); }
 
   document.getElementById('lb-close').addEventListener('click', lbClose);
   document.getElementById('lb-prev').addEventListener('click', () => lbStep(-1));
@@ -1320,36 +1357,40 @@
     if (e.key === 'Escape') lbClose();
   });
 
-  // Touch swipe
-  let tsX = 0;
-  overlay.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; }, {passive:true});
-  overlay.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - tsX;
-    if (Math.abs(dx) > 40) lbStep(dx < 0 ? 1 : -1);
-  });
+  // Unified drag/swipe on viewport
+  const lbViewport = document.getElementById('lb-viewport');
+  let dragStartX = 0, dragCurrent = 0, isDragging = false, didDrag = false;
 
-  // Mouse drag
-  const lbInner = document.getElementById('lb-inner');
-  let dragStartX = 0, isDragging = false, didDrag = false;
-  lbInner.addEventListener('mousedown', e => {
-    dragStartX = e.clientX; isDragging = true; didDrag = false;
-    lbInner.style.cursor = 'grabbing';
-  });
-  window.addEventListener('mousemove', e => {
+  function onDragStart(x) { dragStartX = x; dragCurrent = x; isDragging = true; didDrag = false; }
+  function onDragMove(x) {
     if (!isDragging) return;
-    if (Math.abs(e.clientX - dragStartX) > 5) didDrag = true;
-    const img = document.getElementById('lb-img');
-    img.style.transform = `translateX(${e.clientX - dragStartX}px)`;
-  });
-  window.addEventListener('mouseup', e => {
+    dragCurrent = x;
+    const dx = x - dragStartX;
+    if (Math.abs(dx) > 5) didDrag = true;
+    const strip = document.getElementById('lb-strip');
+    strip.style.transition = 'none';
+    strip.style.transform = `translateX(calc(${-lbIdx * 100}% + ${dx}px))`;
+  }
+  function onDragEnd() {
     if (!isDragging) return;
     isDragging = false;
-    lbInner.style.cursor = '';
-    const img = document.getElementById('lb-img');
-    const dx = e.clientX - dragStartX;
-    img.style.transform = '';
-    if (didDrag && Math.abs(dx) > 60) lbStep(dx < 0 ? 1 : -1);
-  });
+    const dx = dragCurrent - dragStartX;
+    if (didDrag && Math.abs(dx) > 60) {
+      lbStep(dx < 0 ? 1 : -1);
+    } else {
+      const strip = document.getElementById('lb-strip');
+      strip.style.transition = 'transform .3s ease-in-out';
+      strip.style.transform = `translateX(${-lbIdx * 100}%)`;
+    }
+  }
+
+  lbViewport.addEventListener('mousedown', e => { e.preventDefault(); onDragStart(e.clientX); });
+  window.addEventListener('mousemove', e => { onDragMove(e.clientX); });
+  window.addEventListener('mouseup', e => { onDragMove(e.clientX); onDragEnd(); });
+
+  lbViewport.addEventListener('touchstart', e => { onDragStart(e.touches[0].clientX); }, {passive:true});
+  lbViewport.addEventListener('touchmove', e => { onDragMove(e.touches[0].clientX); }, {passive:true});
+  lbViewport.addEventListener('touchend', e => { onDragMove(e.changedTouches[0].clientX); onDragEnd(); });
 
   document.querySelectorAll('.gallery-thumb').forEach(el => {
     el.addEventListener('click', () => lbShow(el.dataset.gallery, +el.dataset.index));
