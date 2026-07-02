@@ -344,6 +344,23 @@
     }
     .portfolio-item p { font-size: .75rem; padding: .5rem .65rem; color: var(--text-muted); font-weight: 600; }
 
+    /* taludes photo grid */
+    .taludes-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .4rem;
+      padding: .4rem .5rem .6rem;
+    }
+    .taludes-gallery img {
+      width: 100%; aspect-ratio: 1;
+      object-fit: cover; border-radius: var(--radius-xs);
+      cursor: pointer; transition: opacity .2s, transform .2s;
+    }
+    .taludes-gallery img:hover { opacity: .85; transform: scale(1.03); }
+    @media (max-width: 600px) {
+      .taludes-gallery { grid-template-columns: repeat(3, 1fr); }
+    }
+
     /* FAQ */
     .faq-list { display: flex; flex-direction: column; gap: .5rem; margin-top: .5rem; }
     .faq-item { background: rgba(255,255,255,.04); border-radius: var(--radius-xs); overflow: hidden; }
@@ -659,7 +676,7 @@
       <li><a href="#inicio" class="active">Início</a></li>
       <li><a href="#servicos">Serviços</a></li>
       <li><a href="#beneficios">Benefícios</a></li>
-      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#projetos">Trabalhos</a></li>
       <li><a href="#contato">Contato</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -939,25 +956,21 @@
       </div>
     </div>
 
-    <!-- ── PROJETOS ── -->
+    <!-- ── TRABALHOS ── -->
     <div class="glass content-section" id="projetos">
-      <h2>Projetos</h2>
+      <h2>Trabalhos</h2>
       <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <div class="portfolio-img-ph">🏔️</div>
-          <p>Hidrossemeadura de Taludes</p>
-        </div>
-        <div class="portfolio-item">
-          <div class="portfolio-img-ph">🏭</div>
-          <p>Restauração Industrial</p>
-        </div>
-        <div class="portfolio-item">
-          <div class="portfolio-img-ph">🏙️</div>
-          <p>Revegetação Urbana</p>
-        </div>
-        <div class="portfolio-item">
-          <div class="portfolio-img-ph">🌾</div>
-          <p>Controle de Erosão Rural</p>
+        <div class="portfolio-item" style="grid-column:span 2;">
+          <p style="padding:.5rem .65rem .3rem;font-weight:700;color:#fff;">Hidrossemeadura de Taludes</p>
+          <div class="taludes-gallery">
+            <img src="img/taludes-1.jpg" alt="Taludes 1" class="gallery-thumb" data-gallery="taludes" data-index="0">
+            <img src="img/taludes-2.jpg" alt="Taludes 2" class="gallery-thumb" data-gallery="taludes" data-index="1">
+            <img src="img/taludes-3.jpg" alt="Taludes 3" class="gallery-thumb" data-gallery="taludes" data-index="2">
+            <img src="img/taludes-4.jpg" alt="Taludes 4" class="gallery-thumb" data-gallery="taludes" data-index="3">
+            <img src="img/taludes-5.jpg" alt="Taludes 5" class="gallery-thumb" data-gallery="taludes" data-index="4">
+            <img src="img/taludes-6.jpg" alt="Taludes 6" class="gallery-thumb" data-gallery="taludes" data-index="5">
+            <img src="img/taludes-7.jpg" alt="Taludes 7" class="gallery-thumb" data-gallery="taludes" data-index="6">
+          </div>
         </div>
       </div>
     </div>
@@ -1052,6 +1065,15 @@
       { src: 'img/urbana-1.jpg', label: 'Revegetação 1' },
       { src: 'img/urbana-2.jpg', label: 'Revegetação 2' },
       { src: 'img/urbana-3.jpg', label: 'Revegetação 3' },
+    ],
+    taludes: [
+      { src: 'img/taludes-1.jpg', label: '' },
+      { src: 'img/taludes-2.jpg', label: '' },
+      { src: 'img/taludes-3.jpg', label: '' },
+      { src: 'img/taludes-4.jpg', label: '' },
+      { src: 'img/taludes-5.jpg', label: '' },
+      { src: 'img/taludes-6.jpg', label: '' },
+      { src: 'img/taludes-7.jpg', label: '' },
     ]
   };
 
