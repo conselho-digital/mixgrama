@@ -359,6 +359,20 @@
       cursor: pointer; flex-shrink: 0; transition: opacity .2s;
     }
     .portfolio-track img:hover { opacity: .85; }
+    @keyframes port-scroll-5 {
+      /* 5 images × (2s hold + 0.5s slide) = 12.5s */
+      0%     { transform: translateX(0);      animation-timing-function: linear; }
+      16%    { transform: translateX(0);      animation-timing-function: ease-in-out; }
+      20%    { transform: translateX(-10%);   animation-timing-function: linear; }
+      36%    { transform: translateX(-10%);   animation-timing-function: ease-in-out; }
+      40%    { transform: translateX(-20%);   animation-timing-function: linear; }
+      56%    { transform: translateX(-20%);   animation-timing-function: ease-in-out; }
+      60%    { transform: translateX(-30%);   animation-timing-function: linear; }
+      76%    { transform: translateX(-30%);   animation-timing-function: ease-in-out; }
+      80%    { transform: translateX(-40%);   animation-timing-function: linear; }
+      96%    { transform: translateX(-40%);   animation-timing-function: ease-in-out; }
+      100%   { transform: translateX(-50%); }
+    }
     @keyframes port-scroll {
       /* 7 images × (2s hold + 0.5s slide) = 17.5s */
       0%       { transform: translateX(0);            animation-timing-function: linear; }
@@ -1003,8 +1017,21 @@
         </div>
 
         <div class="portfolio-item">
-          <div class="portfolio-img-ph">🏭</div>
-          <p>Restauração Industrial</p>
+          <div class="portfolio-carousel">
+            <div class="portfolio-track" style="width:500%;animation:port-scroll-5 12.5s linear infinite;">
+              <img src="img/pracas-1.jpg" alt="Praças 1" class="gallery-thumb" data-gallery="pracas" data-index="0">
+              <img src="img/pracas-2.jpg" alt="Praças 2" class="gallery-thumb" data-gallery="pracas" data-index="1">
+              <img src="img/pracas-3.jpg" alt="Praças 3" class="gallery-thumb" data-gallery="pracas" data-index="2">
+              <img src="img/pracas-4.jpg" alt="Praças 4" class="gallery-thumb" data-gallery="pracas" data-index="3">
+              <img src="img/pracas-5.jpg" alt="Praças 5" class="gallery-thumb" data-gallery="pracas" data-index="4">
+              <img src="img/pracas-1.jpg" alt="Praças 1" data-gallery="pracas" data-index="0">
+              <img src="img/pracas-2.jpg" alt="Praças 2" data-gallery="pracas" data-index="1">
+              <img src="img/pracas-3.jpg" alt="Praças 3" data-gallery="pracas" data-index="2">
+              <img src="img/pracas-4.jpg" alt="Praças 4" data-gallery="pracas" data-index="3">
+              <img src="img/pracas-5.jpg" alt="Praças 5" data-gallery="pracas" data-index="4">
+            </div>
+          </div>
+          <p>Praças Públicas</p>
         </div>
         <div class="portfolio-item">
           <div class="portfolio-img-ph">🏙️</div>
@@ -1107,6 +1134,13 @@
       { src: 'img/urbana-1.jpg', label: 'Revegetação 1' },
       { src: 'img/urbana-2.jpg', label: 'Revegetação 2' },
       { src: 'img/urbana-3.jpg', label: 'Revegetação 3' },
+    ],
+    pracas: [
+      { src: 'img/pracas-1.jpg', label: '' },
+      { src: 'img/pracas-2.jpg', label: '' },
+      { src: 'img/pracas-3.jpg', label: '' },
+      { src: 'img/pracas-4.jpg', label: '' },
+      { src: 'img/pracas-5.jpg', label: '' },
     ],
     taludes: [
       { src: 'img/taludes-1.jpg', label: '' },
