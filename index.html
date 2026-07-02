@@ -360,6 +360,29 @@
     }
     .portfolio-track img:hover { opacity: .85; }
     .portfolio-track-5 img { width: calc(100% / 10); }
+    .portfolio-track-9 img { width: calc(100% / 18); }
+    @keyframes port-scroll-9 {
+      /* 9 images × (2s hold + 0.5s slide) = 22.5s */
+      0%       { transform: translateX(0);          animation-timing-function: linear; }
+      8.8889%  { transform: translateX(0);          animation-timing-function: ease-in-out; }
+      11.1111% { transform: translateX(-5.5556%);   animation-timing-function: linear; }
+      20%      { transform: translateX(-5.5556%);   animation-timing-function: ease-in-out; }
+      22.2222% { transform: translateX(-11.1111%);  animation-timing-function: linear; }
+      31.1111% { transform: translateX(-11.1111%);  animation-timing-function: ease-in-out; }
+      33.3333% { transform: translateX(-16.6667%);  animation-timing-function: linear; }
+      42.2222% { transform: translateX(-16.6667%);  animation-timing-function: ease-in-out; }
+      44.4444% { transform: translateX(-22.2222%);  animation-timing-function: linear; }
+      53.3333% { transform: translateX(-22.2222%);  animation-timing-function: ease-in-out; }
+      55.5556% { transform: translateX(-27.7778%);  animation-timing-function: linear; }
+      64.4444% { transform: translateX(-27.7778%);  animation-timing-function: ease-in-out; }
+      66.6667% { transform: translateX(-33.3333%);  animation-timing-function: linear; }
+      75.5556% { transform: translateX(-33.3333%);  animation-timing-function: ease-in-out; }
+      77.7778% { transform: translateX(-38.8889%);  animation-timing-function: linear; }
+      86.6667% { transform: translateX(-38.8889%);  animation-timing-function: ease-in-out; }
+      88.8889% { transform: translateX(-44.4444%);  animation-timing-function: linear; }
+      97.7778% { transform: translateX(-44.4444%);  animation-timing-function: ease-in-out; }
+      100%     { transform: translateX(-50%); }
+    }
     @keyframes port-scroll-5 {
       /* 5 images × (2s hold + 0.5s slide) = 12.5s */
       0%     { transform: translateX(0);      animation-timing-function: linear; }
@@ -1052,7 +1075,28 @@
           <p>Revegetação Urbana</p>
         </div>
         <div class="portfolio-item">
-          <div class="portfolio-img-ph">🌾</div>
+          <div class="portfolio-carousel">
+            <div class="portfolio-track portfolio-track-9" style="width:900%;animation:port-scroll-9 22.5s linear infinite;">
+              <img src="img/erosao-1.png" alt="Erosão 1" class="gallery-thumb" data-gallery="erosao" data-index="0">
+              <img src="img/erosao-2.jpg" alt="Erosão 2" class="gallery-thumb" data-gallery="erosao" data-index="1">
+              <img src="img/erosao-3.jpg" alt="Erosão 3" class="gallery-thumb" data-gallery="erosao" data-index="2">
+              <img src="img/erosao-4.jpg" alt="Erosão 4" class="gallery-thumb" data-gallery="erosao" data-index="3">
+              <img src="img/erosao-5.jpg" alt="Erosão 5" class="gallery-thumb" data-gallery="erosao" data-index="4">
+              <img src="img/erosao-6.jpg" alt="Erosão 6" class="gallery-thumb" data-gallery="erosao" data-index="5">
+              <img src="img/erosao-7.jpg" alt="Erosão 7" class="gallery-thumb" data-gallery="erosao" data-index="6">
+              <img src="img/erosao-8.jpg" alt="Erosão 8" class="gallery-thumb" data-gallery="erosao" data-index="7">
+              <img src="img/erosao-9.jpg" alt="Erosão 9" class="gallery-thumb" data-gallery="erosao" data-index="8">
+              <img src="img/erosao-1.png" alt="Erosão 1" data-gallery="erosao" data-index="0">
+              <img src="img/erosao-2.jpg" alt="Erosão 2" data-gallery="erosao" data-index="1">
+              <img src="img/erosao-3.jpg" alt="Erosão 3" data-gallery="erosao" data-index="2">
+              <img src="img/erosao-4.jpg" alt="Erosão 4" data-gallery="erosao" data-index="3">
+              <img src="img/erosao-5.jpg" alt="Erosão 5" data-gallery="erosao" data-index="4">
+              <img src="img/erosao-6.jpg" alt="Erosão 6" data-gallery="erosao" data-index="5">
+              <img src="img/erosao-7.jpg" alt="Erosão 7" data-gallery="erosao" data-index="6">
+              <img src="img/erosao-8.jpg" alt="Erosão 8" data-gallery="erosao" data-index="7">
+              <img src="img/erosao-9.jpg" alt="Erosão 9" data-gallery="erosao" data-index="8">
+            </div>
+          </div>
           <p>Controle de Erosão Rural</p>
         </div>
       </div>
@@ -1148,6 +1192,17 @@
       { src: 'img/urbana-1.jpg', label: 'Revegetação 1' },
       { src: 'img/urbana-2.jpg', label: 'Revegetação 2' },
       { src: 'img/urbana-3.jpg', label: 'Revegetação 3' },
+    ],
+    erosao: [
+      { src: 'img/erosao-1.png', label: '' },
+      { src: 'img/erosao-2.jpg', label: '' },
+      { src: 'img/erosao-3.jpg', label: '' },
+      { src: 'img/erosao-4.jpg', label: '' },
+      { src: 'img/erosao-5.jpg', label: '' },
+      { src: 'img/erosao-6.jpg', label: '' },
+      { src: 'img/erosao-7.jpg', label: '' },
+      { src: 'img/erosao-8.jpg', label: '' },
+      { src: 'img/erosao-9.jpg', label: '' },
     ],
     reveg: [
       { src: 'img/reveg-1.jpg', label: '' },
